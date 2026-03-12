@@ -184,6 +184,25 @@
             "in": "path",
             "required": true,
             "description": "The name of the organization"
+          },
+          {
+            "name": "starting_after",
+            "type": "string",
+            "in": "query",
+            "description": "If provided, returns results after the specified cursor"
+          },
+          {
+            "name": "ending_before",
+            "type": "string",
+            "in": "query",
+            "description": "If provided, returns results before the specified cursor"
+          },
+          {
+            "name": "limit",
+            "type": "integer",
+            "in": "query",
+            "default": 25,
+            "description": "If provided, specifies the number of returned results (max 100)"
           }
         ],
         "responses": {
@@ -3585,6 +3604,25 @@
             "in": "path",
             "required": true,
             "description": "The name of the branch"
+          },
+          {
+            "name": "starting_after",
+            "type": "string",
+            "in": "query",
+            "description": "If provided, returns results after the specified cursor"
+          },
+          {
+            "name": "ending_before",
+            "type": "string",
+            "in": "query",
+            "description": "If provided, returns results before the specified cursor"
+          },
+          {
+            "name": "limit",
+            "type": "integer",
+            "in": "query",
+            "default": 25,
+            "description": "If provided, specifies the number of returned results (max 100)"
           }
         ],
         "responses": {
@@ -5274,6 +5312,20 @@
             "in": "path",
             "required": true,
             "description": "The name of the deploy request's database"
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "in": "query",
+            "default": 1,
+            "description": "If provided, specifies the page offset of returned results"
+          },
+          {
+            "name": "per_page",
+            "type": "integer",
+            "in": "query",
+            "default": 25,
+            "description": "If provided, specifies the number of returned results"
           }
         ],
         "responses": {
@@ -6205,6 +6257,20 @@
             "in": "path",
             "required": true,
             "description": "The number of the deploy request"
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "in": "query",
+            "default": 1,
+            "description": "If provided, specifies the page offset of returned results"
+          },
+          {
+            "name": "per_page",
+            "type": "integer",
+            "in": "query",
+            "default": 25,
+            "description": "If provided, specifies the number of returned results"
           }
         ],
         "responses": {
@@ -6660,6 +6726,20 @@
             ],
             "in": "query",
             "description": "Filter by recommendation state"
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "in": "query",
+            "default": 1,
+            "description": "If provided, specifies the page offset of returned results"
+          },
+          {
+            "name": "per_page",
+            "type": "integer",
+            "in": "query",
+            "default": 25,
+            "description": "If provided, specifies the number of returned results"
           }
         ],
         "responses": {
@@ -9131,6 +9211,20 @@
             "type": "string",
             "in": "query",
             "description": "Search term to filter teams by name"
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "in": "query",
+            "default": 1,
+            "description": "If provided, specifies the page offset of returned results"
+          },
+          {
+            "name": "per_page",
+            "type": "integer",
+            "in": "query",
+            "default": 25,
+            "description": "If provided, specifies the number of returned results"
           }
         ],
         "responses": {
@@ -9434,6 +9528,20 @@
             "in": "path",
             "required": true,
             "description": "The slug of the team"
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "in": "query",
+            "default": 1,
+            "description": "If provided, specifies the page offset of returned results"
+          },
+          {
+            "name": "per_page",
+            "type": "integer",
+            "in": "query",
+            "default": 25,
+            "description": "If provided, specifies the number of returned results"
           }
         ],
         "responses": {
