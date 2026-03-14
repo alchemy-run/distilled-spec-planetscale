@@ -23957,6 +23957,10 @@
       "description": "          Resources for managing traffic budgets.\n"
     },
     {
+      "name": "Traffic rules",
+      "description": "          Resources for managing traffic rules for a traffic budget.\n"
+    },
+    {
       "name": "Users",
       "description": "          Resources for managing users.\n"
     },
