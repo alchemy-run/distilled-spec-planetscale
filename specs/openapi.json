@@ -5486,19 +5486,19 @@
                 },
                 "capacity": {
                   "type": "integer",
-                  "description": "Maximum percentage of capacity (0-100)"
+                  "description": "The maximum capacity that can be banked, measured as a percentage of seconds of full server usage (0-6000). Unlimited when not set."
                 },
                 "rate": {
                   "type": "integer",
-                  "description": "Rate limit percentage (0-100)"
+                  "description": "The rate at which capacity refills, as a percentage of server resources (0-100). Unlimited when not set."
                 },
                 "burst": {
                   "type": "integer",
-                  "description": "Burst limit percentage (0-100)"
+                  "description": "The maximum capacity a single query can consume, measured as a percentage of seconds of full server usage (0-6000). Unlimited when not set."
                 },
                 "concurrency": {
                   "type": "integer",
-                  "description": "Concurrency limit percentage (0-100)"
+                  "description": "The percentage of available worker processes this policy can use (0-100). Unlimited when not set."
                 },
                 "rules": {
                   "type": "array",
@@ -5583,15 +5583,18 @@
               "properties": {
                 "kind": {
                   "type": "string",
+                  "enum": [
+                    "match"
+                  ],
                   "description": "Kind of rule"
                 },
                 "keyspace": {
                   "type": "string",
-                  "description": "Keyspace to apply rule to"
+                  "description": "The keyspace to apply a query pattern rule to"
                 },
                 "fingerprint": {
                   "type": "string",
-                  "description": "Query fingerprint to apply rule to"
+                  "description": "Query pattern fingerprint to apply rule to"
                 },
                 "tags": {
                   "type": "array",
@@ -5819,19 +5822,19 @@
                 },
                 "capacity": {
                   "type": "integer",
-                  "description": "Maximum percentage of capacity (0-100)"
+                  "description": "The maximum capacity that can be banked, measured as a percentage of seconds of full server usage (0-6000). Unlimited when not set."
                 },
                 "rate": {
                   "type": "integer",
-                  "description": "Rate limit percentage (0-100)"
+                  "description": "The rate at which capacity refills, as a percentage of server resources (0-100). Unlimited when not set."
                 },
                 "burst": {
                   "type": "integer",
-                  "description": "Burst limit percentage (0-100)"
+                  "description": "The maximum capacity a single query can consume, measured as a percentage of seconds of full server usage (0-6000). Unlimited when not set."
                 },
                 "concurrency": {
                   "type": "integer",
-                  "description": "Concurrency limit percentage (0-100)"
+                  "description": "The percentage of available worker processes this policy can use (0-100). Unlimited when not set."
                 },
                 "rules": {
                   "type": "array",
@@ -19207,19 +19210,19 @@
               },
               "capacity": {
                 "type": "number",
-                "description": "Capacity value"
+                "description": "The maximum capacity that can be banked, measured as a percentage of seconds of full server usage (0-6000). Unlimited when not set."
               },
               "rate": {
                 "type": "number",
-                "description": "Rate value"
+                "description": "The rate at which capacity refills, as a percentage of server resources (0-100). Unlimited when not set."
               },
               "burst": {
                 "type": "number",
-                "description": "Burst value"
+                "description": "The maximum capacity a single query can consume, measured as a percentage of seconds of full server usage (0-6000). Unlimited when not set."
               },
               "concurrency": {
                 "type": "number",
-                "description": "Concurrency value"
+                "description": "The percentage of available worker processes this policy can use (0-100). Unlimited when not set."
               },
               "actor": {
                 "type": "object",
@@ -19405,19 +19408,19 @@
         },
         "capacity": {
           "type": "number",
-          "description": "Capacity value"
+          "description": "The maximum capacity that can be banked, measured as a percentage of seconds of full server usage (0-6000). Unlimited when not set."
         },
         "rate": {
           "type": "number",
-          "description": "Rate value"
+          "description": "The rate at which capacity refills, as a percentage of server resources (0-100). Unlimited when not set."
         },
         "burst": {
           "type": "number",
-          "description": "Burst value"
+          "description": "The maximum capacity a single query can consume, measured as a percentage of seconds of full server usage (0-6000). Unlimited when not set."
         },
         "concurrency": {
           "type": "number",
-          "description": "Concurrency value"
+          "description": "The percentage of available worker processes this policy can use (0-100). Unlimited when not set."
         },
         "actor": {
           "type": "object",
