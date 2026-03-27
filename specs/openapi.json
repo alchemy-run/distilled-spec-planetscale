@@ -357,7 +357,7 @@
             "description": "Internal Server Error"
           }
         },
-        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_database`, `delete_database`, `write_database`, `read_branch`, `delete_branch`, `create_branch`, `delete_production_branch`, `connect_branch`, `connect_production_branch`, `connect_production_read_only_branch`, `delete_branch_password`, `delete_production_branch_password`, `delete_production_read_only_branch_password`, `read_deploy_request`, `create_deploy_request`, `approve_deploy_request`, `read_comment`, `create_comment`, `restore_backup`, `restore_production_branch_backup`, `read_backups`, `write_backups`, `delete_backups`, `delete_production_branch_backups`, `write_branch_vschema`, `write_production_branch_vschema`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_databases` |"
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_database`, `delete_database`, `write_database`, `read_branch`, `delete_branch`, `create_branch`, `delete_production_branch`, `connect_branch`, `connect_production_branch`, `connect_production_read_only_branch`, `delete_branch_password`, `delete_production_branch_password`, `delete_production_read_only_branch_password`, `read_deploy_request`, `create_deploy_request`, `approve_deploy_request`, `read_comment`, `create_comment`, `restore_backup`, `restore_production_branch_backup`, `read_backups`, `write_backups`, `delete_backups`, `delete_production_branch_backups`, `write_branch_vschema`, `write_production_branch_vschema`, `read_maintenance_schedules`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_databases` |"
       },
       "post": {
         "tags": [
@@ -490,7 +490,7 @@
             "description": "Internal Server Error"
           }
         },
-        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_database`, `delete_database`, `write_database`, `read_branch`, `delete_branch`, `create_branch`, `delete_production_branch`, `connect_branch`, `connect_production_branch`, `connect_production_read_only_branch`, `delete_branch_password`, `delete_production_branch_password`, `delete_production_read_only_branch_password`, `read_deploy_request`, `create_deploy_request`, `approve_deploy_request`, `read_comment`, `create_comment`, `restore_backup`, `restore_production_branch_backup`, `read_backups`, `write_backups`, `delete_backups`, `delete_production_branch_backups`, `write_branch_vschema`, `write_production_branch_vschema`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_databases` |\n| Database | `read_database` |"
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_database`, `delete_database`, `write_database`, `read_branch`, `delete_branch`, `create_branch`, `delete_production_branch`, `connect_branch`, `connect_production_branch`, `connect_production_read_only_branch`, `delete_branch_password`, `delete_production_branch_password`, `delete_production_read_only_branch_password`, `read_deploy_request`, `create_deploy_request`, `approve_deploy_request`, `read_comment`, `create_comment`, `restore_backup`, `restore_production_branch_backup`, `read_backups`, `write_backups`, `delete_backups`, `delete_production_branch_backups`, `write_branch_vschema`, `write_production_branch_vschema`, `read_maintenance_schedules`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_databases` |\n| Database | `read_database` |"
       },
       "patch": {
         "tags": [
@@ -7551,6 +7551,198 @@
         "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_deploy_request`, `create_deploy_request`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `deploy_deploy_requests` |\n| Database | `deploy_deploy_requests` |"
       }
     },
+    "/organizations/{organization}/databases/{database}/maintenance-schedules": {
+      "get": {
+        "tags": [
+          "MaintenanceSchedules"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "list_maintenance_schedules",
+        "summary": "List maintenance schedules",
+        "parameters": [
+          {
+            "name": "organization",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Organization name slug from `list_organizations`. Example: `acme`."
+          },
+          {
+            "name": "database",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Database name slug from `list_databases`. Example: `app-db`."
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "in": "query",
+            "default": 1,
+            "description": "If provided, specifies the page offset of returned results"
+          },
+          {
+            "name": "per_page",
+            "type": "integer",
+            "in": "query",
+            "default": 25,
+            "description": "If provided, specifies the number of returned results"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns maintenance schedules for the database",
+            "schema": {
+              "$ref": "#/definitions/PaginatedBranchMaintenanceSchedule"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "\n### Authorization\nA service token   must have at least one of the following access   in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_maintenance_schedules`\n\n"
+      }
+    },
+    "/organizations/{organization}/databases/{database}/maintenance-schedules/{id}": {
+      "get": {
+        "tags": [
+          "MaintenanceSchedules"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "get_maintenance_schedule",
+        "summary": "Get a maintenance schedule",
+        "parameters": [
+          {
+            "name": "id",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the maintenance schedule"
+          },
+          {
+            "name": "organization",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Organization name slug from `list_organizations`. Example: `acme`."
+          },
+          {
+            "name": "database",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Database name slug from `list_databases`. Example: `app-db`."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a maintenance schedule",
+            "schema": {
+              "$ref": "#/definitions/BranchMaintenanceSchedule"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "\n### Authorization\nA service token   must have at least one of the following access   in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_maintenance_schedules`\n\n"
+      }
+    },
+    "/organizations/{organization}/databases/{database}/maintenance-schedules/{id}/windows": {
+      "get": {
+        "tags": [
+          "MaintenanceWindows"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "list_maintenance_windows",
+        "summary": "List maintenance windows",
+        "parameters": [
+          {
+            "name": "id",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the maintenance schedule"
+          },
+          {
+            "name": "organization",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Organization name slug from `list_organizations`. Example: `acme`."
+          },
+          {
+            "name": "database",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Database name slug from `list_databases`. Example: `app-db`."
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "in": "query",
+            "default": 1,
+            "description": "If provided, specifies the page offset of returned results"
+          },
+          {
+            "name": "per_page",
+            "type": "integer",
+            "in": "query",
+            "default": 25,
+            "description": "If provided, specifies the number of returned results"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns maintenance windows for the schedule",
+            "schema": {
+              "$ref": "#/definitions/PaginatedBranchMaintenanceWindow"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "\n### Authorization\nA service token   must have at least one of the following access   in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_maintenance_schedules`\n\n"
+      }
+    },
     "/organizations/{organization}/databases/{database}/read-only-regions": {
       "get": {
         "tags": [
@@ -7612,7 +7804,7 @@
             "description": "Internal Server Error"
           }
         },
-        "description": "List read-only regions for the database's default branch\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_database`, `delete_database`, `write_database`, `read_branch`, `delete_branch`, `create_branch`, `delete_production_branch`, `connect_branch`, `connect_production_branch`, `connect_production_read_only_branch`, `delete_branch_password`, `delete_production_branch_password`, `delete_production_read_only_branch_password`, `read_deploy_request`, `create_deploy_request`, `approve_deploy_request`, `read_comment`, `create_comment`, `restore_backup`, `restore_production_branch_backup`, `read_backups`, `write_backups`, `delete_backups`, `delete_production_branch_backups`, `write_branch_vschema`, `write_production_branch_vschema`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_branches` |\n| Database | `read_branches` |"
+        "description": "List read-only regions for the database's default branch\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_database`, `delete_database`, `write_database`, `read_branch`, `delete_branch`, `create_branch`, `delete_production_branch`, `connect_branch`, `connect_production_branch`, `connect_production_read_only_branch`, `delete_branch_password`, `delete_production_branch_password`, `delete_production_read_only_branch_password`, `read_deploy_request`, `create_deploy_request`, `approve_deploy_request`, `read_comment`, `create_comment`, `restore_backup`, `restore_production_branch_backup`, `read_backups`, `write_backups`, `delete_backups`, `delete_production_branch_backups`, `write_branch_vschema`, `write_production_branch_vschema`, `read_maintenance_schedules`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_branches` |\n| Database | `read_branches` |"
       }
     },
     "/organizations/{organization}/databases/{database}/regions": {
@@ -7676,7 +7868,7 @@
             "description": "Internal Server Error"
           }
         },
-        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_database`, `delete_database`, `write_database`, `read_branch`, `delete_branch`, `create_branch`, `delete_production_branch`, `connect_branch`, `connect_production_branch`, `connect_production_read_only_branch`, `delete_branch_password`, `delete_production_branch_password`, `delete_production_read_only_branch_password`, `read_deploy_request`, `create_deploy_request`, `approve_deploy_request`, `read_comment`, `create_comment`, `restore_backup`, `restore_production_branch_backup`, `read_backups`, `write_backups`, `delete_backups`, `delete_production_branch_backups`, `write_branch_vschema`, `write_production_branch_vschema`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_databases` |\n| Database | `read_database` |"
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_database`, `delete_database`, `write_database`, `read_branch`, `delete_branch`, `create_branch`, `delete_production_branch`, `connect_branch`, `connect_production_branch`, `connect_production_read_only_branch`, `delete_branch_password`, `delete_production_branch_password`, `delete_production_read_only_branch_password`, `read_deploy_request`, `create_deploy_request`, `approve_deploy_request`, `read_comment`, `create_comment`, `restore_backup`, `restore_production_branch_backup`, `read_backups`, `write_backups`, `delete_backups`, `delete_production_branch_backups`, `write_branch_vschema`, `write_production_branch_vschema`, `read_maintenance_schedules`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_databases` |\n| Database | `read_database` |"
       }
     },
     "/organizations/{organization}/databases/{database}/schema-recommendations": {
@@ -15535,6 +15727,321 @@
         "keyspaces",
         "configurable",
         "configurations"
+      ]
+    },
+    "PaginatedBranchMaintenanceSchedule": {
+      "type": "object",
+      "properties": {
+        "current_page": {
+          "type": "integer",
+          "description": "The current page number"
+        },
+        "next_page": {
+          "type": "integer",
+          "description": "The next page number"
+        },
+        "next_page_url": {
+          "type": "string",
+          "description": "The next page of results"
+        },
+        "prev_page": {
+          "type": "integer",
+          "description": "The previous page number"
+        },
+        "prev_page_url": {
+          "type": "string",
+          "description": "The previous page of results"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The ID of the maintenance schedule"
+              },
+              "name": {
+                "type": "string",
+                "description": "The display name of the maintenance schedule"
+              },
+              "created_at": {
+                "type": "string",
+                "description": "When the maintenance schedule was created"
+              },
+              "updated_at": {
+                "type": "string",
+                "description": "When the maintenance schedule was last updated"
+              },
+              "last_window_datetime": {
+                "type": "string",
+                "description": "When the last maintenance window started"
+              },
+              "next_window_datetime": {
+                "type": "string",
+                "description": "When the next maintenance window is scheduled"
+              },
+              "duration": {
+                "type": "integer",
+                "description": "The duration of the maintenance window in hours"
+              },
+              "day": {
+                "type": "integer",
+                "description": "Day of the week (0 = Sunday, 6 = Saturday, 7 = every day)"
+              },
+              "hour": {
+                "type": "integer",
+                "description": "Hour of the day in UTC (0-23)"
+              },
+              "week": {
+                "type": "integer",
+                "description": "Week of the month for monthly schedules (0-3)"
+              },
+              "frequency_value": {
+                "type": "integer",
+                "description": "The frequency value of the maintenance schedule"
+              },
+              "frequency_unit": {
+                "type": "string",
+                "enum": [
+                  "day",
+                  "week",
+                  "month",
+                  "once"
+                ],
+                "description": "The frequency unit of the maintenance schedule"
+              },
+              "enabled": {
+                "type": "boolean",
+                "description": "Whether the maintenance schedule is enabled"
+              },
+              "expires_at": {
+                "type": "string",
+                "description": "When a one-time maintenance schedule expires"
+              },
+              "deadline_at": {
+                "type": "string",
+                "description": "The deadline for a required maintenance schedule"
+              },
+              "required": {
+                "type": "boolean",
+                "description": "Whether the maintenance schedule is required"
+              },
+              "pending_vitess_version_update": {
+                "type": "boolean",
+                "description": "Whether there is a pending Vitess version update"
+              },
+              "pending_vitess_version": {
+                "type": "string",
+                "description": "The pending Vitess version, if any"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "name",
+              "created_at",
+              "updated_at",
+              "last_window_datetime",
+              "next_window_datetime",
+              "duration",
+              "day",
+              "hour",
+              "week",
+              "frequency_value",
+              "frequency_unit",
+              "enabled",
+              "expires_at",
+              "deadline_at",
+              "required",
+              "pending_vitess_version_update",
+              "pending_vitess_version"
+            ]
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "current_page",
+        "next_page",
+        "next_page_url",
+        "prev_page",
+        "prev_page_url",
+        "data"
+      ]
+    },
+    "BranchMaintenanceSchedule": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the maintenance schedule"
+        },
+        "name": {
+          "type": "string",
+          "description": "The display name of the maintenance schedule"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "When the maintenance schedule was created"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "When the maintenance schedule was last updated"
+        },
+        "last_window_datetime": {
+          "type": "string",
+          "description": "When the last maintenance window started"
+        },
+        "next_window_datetime": {
+          "type": "string",
+          "description": "When the next maintenance window is scheduled"
+        },
+        "duration": {
+          "type": "integer",
+          "description": "The duration of the maintenance window in hours"
+        },
+        "day": {
+          "type": "integer",
+          "description": "Day of the week (0 = Sunday, 6 = Saturday, 7 = every day)"
+        },
+        "hour": {
+          "type": "integer",
+          "description": "Hour of the day in UTC (0-23)"
+        },
+        "week": {
+          "type": "integer",
+          "description": "Week of the month for monthly schedules (0-3)"
+        },
+        "frequency_value": {
+          "type": "integer",
+          "description": "The frequency value of the maintenance schedule"
+        },
+        "frequency_unit": {
+          "type": "string",
+          "enum": [
+            "day",
+            "week",
+            "month",
+            "once"
+          ],
+          "description": "The frequency unit of the maintenance schedule"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether the maintenance schedule is enabled"
+        },
+        "expires_at": {
+          "type": "string",
+          "description": "When a one-time maintenance schedule expires"
+        },
+        "deadline_at": {
+          "type": "string",
+          "description": "The deadline for a required maintenance schedule"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Whether the maintenance schedule is required"
+        },
+        "pending_vitess_version_update": {
+          "type": "boolean",
+          "description": "Whether there is a pending Vitess version update"
+        },
+        "pending_vitess_version": {
+          "type": "string",
+          "description": "The pending Vitess version, if any"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "created_at",
+        "updated_at",
+        "last_window_datetime",
+        "next_window_datetime",
+        "duration",
+        "day",
+        "hour",
+        "week",
+        "frequency_value",
+        "frequency_unit",
+        "enabled",
+        "expires_at",
+        "deadline_at",
+        "required",
+        "pending_vitess_version_update",
+        "pending_vitess_version"
+      ]
+    },
+    "PaginatedBranchMaintenanceWindow": {
+      "type": "object",
+      "properties": {
+        "current_page": {
+          "type": "integer",
+          "description": "The current page number"
+        },
+        "next_page": {
+          "type": "integer",
+          "description": "The next page number"
+        },
+        "next_page_url": {
+          "type": "string",
+          "description": "The next page of results"
+        },
+        "prev_page": {
+          "type": "integer",
+          "description": "The previous page number"
+        },
+        "prev_page_url": {
+          "type": "string",
+          "description": "The previous page of results"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The ID of the maintenance window"
+              },
+              "created_at": {
+                "type": "string",
+                "description": "When the maintenance window was created"
+              },
+              "updated_at": {
+                "type": "string",
+                "description": "When the maintenance window was last updated"
+              },
+              "started_at": {
+                "type": "string",
+                "description": "When the maintenance window started"
+              },
+              "finished_at": {
+                "type": "string",
+                "description": "When the maintenance window finished"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "created_at",
+              "updated_at",
+              "started_at",
+              "finished_at"
+            ]
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "current_page",
+        "next_page",
+        "next_page_url",
+        "prev_page",
+        "prev_page_url",
+        "data"
       ]
     },
     "PaginatedOauthApplication": {
@@ -25642,6 +26149,14 @@
     {
       "name": "Keyspace VSchemas",
       "description": "          Resources for managing VSchemas within a keyspace.\n"
+    },
+    {
+      "name": "MaintenanceSchedules",
+      "description": "          Resources for viewing database maintenance schedules for Vitess databases (Enterprise only).\n"
+    },
+    {
+      "name": "MaintenanceWindows",
+      "description": "          Resources for viewing maintenance windows for a Vitess database (Enterprise only).\n"
     },
     {
       "name": "OAuth applications",
