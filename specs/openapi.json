@@ -5498,6 +5498,10 @@
                   "type": "integer",
                   "description": "The percentage of available worker processes this policy can use (0-100). Unlimited when not set."
                 },
+                "warning_threshold": {
+                  "type": "integer",
+                  "description": "A percentage of capacity, burst, or concurrency thresholds to emit warnings for enforced budgets (0-100)."
+                },
                 "rules": {
                   "type": "array",
                   "items": {
@@ -5833,6 +5837,10 @@
                 "concurrency": {
                   "type": "integer",
                   "description": "The percentage of available worker processes this policy can use (0-100). Unlimited when not set."
+                },
+                "warning_threshold": {
+                  "type": "integer",
+                  "description": "A percentage of capacity, burst, or concurrency thresholds to emit warnings for enforced budgets (0-100)."
                 },
                 "rules": {
                   "type": "array",
@@ -19715,6 +19723,10 @@
                 "type": "number",
                 "description": "The percentage of available worker processes this policy can use (0-100). Unlimited when not set."
               },
+              "warning_threshold": {
+                "type": "number",
+                "description": "A percentage of capacity, burst, or concurrency thresholds to emit warnings for enforced budgets (0-100)."
+              },
               "actor": {
                 "type": "object",
                 "properties": {
@@ -19912,6 +19924,10 @@
         "concurrency": {
           "type": "number",
           "description": "The percentage of available worker processes this policy can use (0-100). Unlimited when not set."
+        },
+        "warning_threshold": {
+          "type": "number",
+          "description": "A percentage of capacity, burst, or concurrency thresholds to emit warnings for enforced budgets (0-100)."
         },
         "actor": {
           "type": "object",
