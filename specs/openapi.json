@@ -409,6 +409,20 @@
                 "major_version": {
                   "type": "string",
                   "description": "For PostgreSQL databases, the PostgreSQL major version to use for the database. Defaults to the latest available major version."
+                },
+                "storage": {
+                  "type": "object",
+                  "properties": {
+                    "minimum_storage_bytes": {
+                      "type": "integer",
+                      "description": "The initial minimum storage size in bytes."
+                    },
+                    "maximum_storage_bytes": {
+                      "type": "integer",
+                      "description": "The maximum storage size in bytes for autoscaling."
+                    }
+                  },
+                  "additionalProperties": false
                 }
               },
               "additionalProperties": false,
