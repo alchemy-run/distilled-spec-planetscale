@@ -15969,6 +15969,14 @@
               "pending_vitess_version": {
                 "type": "string",
                 "description": "The pending Vitess version, if any"
+              },
+              "pending_mysql_version_update": {
+                "type": "boolean",
+                "description": "Whether there is a pending MySQL version update"
+              },
+              "pending_mysql_version": {
+                "type": "string",
+                "description": "The pending MySQL version, if any"
               }
             },
             "additionalProperties": false,
@@ -15990,7 +15998,9 @@
               "deadline_at",
               "required",
               "pending_vitess_version_update",
-              "pending_vitess_version"
+              "pending_vitess_version",
+              "pending_mysql_version_update",
+              "pending_mysql_version"
             ]
           }
         }
@@ -16085,6 +16095,14 @@
         "pending_vitess_version": {
           "type": "string",
           "description": "The pending Vitess version, if any"
+        },
+        "pending_mysql_version_update": {
+          "type": "boolean",
+          "description": "Whether there is a pending MySQL version update"
+        },
+        "pending_mysql_version": {
+          "type": "string",
+          "description": "The pending MySQL version, if any"
         }
       },
       "additionalProperties": false,
@@ -16106,7 +16124,9 @@
         "deadline_at",
         "required",
         "pending_vitess_version_update",
-        "pending_vitess_version"
+        "pending_vitess_version",
+        "pending_mysql_version_update",
+        "pending_mysql_version"
       ]
     },
     "PaginatedBranchMaintenanceWindow": {
