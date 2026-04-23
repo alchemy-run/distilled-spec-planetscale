@@ -18862,6 +18862,10 @@
                 "type": "string",
                 "description": "The database user name"
               },
+              "base_username": {
+                "type": "string",
+                "description": "The base username without branch routing suffix"
+              },
               "password": {
                 "type": "string",
                 "description": "The plain text password, available only after create"
@@ -19025,6 +19029,7 @@
               "private_access_host_url",
               "private_connection_service_name",
               "username",
+              "base_username",
               "password",
               "database_name",
               "created_at",
@@ -19081,6 +19086,10 @@
         "username": {
           "type": "string",
           "description": "The database user name"
+        },
+        "base_username": {
+          "type": "string",
+          "description": "The base username without branch routing suffix"
         },
         "password": {
           "type": "string",
@@ -19245,6 +19254,7 @@
         "private_access_host_url",
         "private_connection_service_name",
         "username",
+        "base_username",
         "password",
         "database_name",
         "created_at",
