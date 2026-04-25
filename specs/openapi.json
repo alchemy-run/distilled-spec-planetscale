@@ -11734,10 +11734,7 @@
               "protected",
               "required",
               "restored_branches",
-              "actor",
-              "backup_policy",
-              "schema_snapshot",
-              "database_branch"
+              "actor"
             ]
           }
         }
@@ -12059,10 +12056,7 @@
         "protected",
         "required",
         "restored_branches",
-        "actor",
-        "backup_policy",
-        "schema_snapshot",
-        "database_branch"
+        "actor"
       ]
     },
     "PaginatedPostgresBouncerResizeRequest": {
@@ -14387,7 +14381,7 @@
               },
               "plain_text": {
                 "type": "string",
-                "description": "The plain text password, available only after create"
+                "description": "The plain text password. Null except in the response from the create endpoint."
               },
               "replica": {
                 "type": "boolean",
@@ -14627,7 +14621,7 @@
         },
         "plain_text": {
           "type": "string",
-          "description": "The plain text password, available only after create"
+          "description": "The plain text password. Null except in the response from the create endpoint."
         },
         "replica": {
           "type": "boolean",
@@ -15124,7 +15118,7 @@
               },
               "automatic_migrations": {
                 "type": "boolean",
-                "description": "Whether to automatically manage Rails migrations during deploy requests"
+                "description": "Whether to automatically manage Rails migrations during deploy requests."
               },
               "restrict_branch_region": {
                 "type": "boolean",
@@ -15148,11 +15142,11 @@
               },
               "migration_table_name": {
                 "type": "string",
-                "description": "Table name to use for copying schema migration data"
+                "description": "Table name to use for copying schema migration data."
               },
               "migration_framework": {
                 "type": "string",
-                "description": "Framework used for applying migrations"
+                "description": "Framework used for applying migrations."
               },
               "created_at": {
                 "type": "string",
@@ -15184,12 +15178,10 @@
               "open_schema_recommendations_count",
               "development_branches_count",
               "production_branches_count",
-              "issues_count",
               "multiple_admins_required_for_deletion",
               "ready",
               "at_backup_restore_branches_limit",
               "at_development_branch_usage_limit",
-              "data_import",
               "region",
               "html_url",
               "name",
@@ -15206,14 +15198,11 @@
               "config_change_queued",
               "allow_data_branching",
               "foreign_keys_enabled",
-              "automatic_migrations",
               "restrict_branch_region",
               "insights_raw_queries",
               "plan",
               "insights_enabled",
               "production_branch_web_console",
-              "migration_table_name",
-              "migration_framework",
               "created_at",
               "updated_at",
               "schema_last_updated_at",
@@ -15457,7 +15446,7 @@
         },
         "automatic_migrations": {
           "type": "boolean",
-          "description": "Whether to automatically manage Rails migrations during deploy requests"
+          "description": "Whether to automatically manage Rails migrations during deploy requests."
         },
         "restrict_branch_region": {
           "type": "boolean",
@@ -15481,11 +15470,11 @@
         },
         "migration_table_name": {
           "type": "string",
-          "description": "Table name to use for copying schema migration data"
+          "description": "Table name to use for copying schema migration data."
         },
         "migration_framework": {
           "type": "string",
-          "description": "Framework used for applying migrations"
+          "description": "Framework used for applying migrations."
         },
         "created_at": {
           "type": "string",
@@ -15517,12 +15506,10 @@
         "open_schema_recommendations_count",
         "development_branches_count",
         "production_branches_count",
-        "issues_count",
         "multiple_admins_required_for_deletion",
         "ready",
         "at_backup_restore_branches_limit",
         "at_development_branch_usage_limit",
-        "data_import",
         "region",
         "html_url",
         "name",
@@ -15539,14 +15526,11 @@
         "config_change_queued",
         "allow_data_branching",
         "foreign_keys_enabled",
-        "automatic_migrations",
         "restrict_branch_region",
         "insights_raw_queries",
         "plan",
         "insights_enabled",
         "production_branch_web_console",
-        "migration_table_name",
-        "migration_framework",
         "created_at",
         "updated_at",
         "schema_last_updated_at",
@@ -16252,11 +16236,8 @@
                 "description": "When the OAuth application was last updated"
               },
               "scopes": {
-                "items": {
-                  "type": "string"
-                },
-                "type": "array",
-                "description": "The scopes that the OAuth application requires on a user account"
+                "type": "string",
+                "description": "The scopes that the OAuth application requires on a user account, as a space-separated string"
               },
               "avatar": {
                 "type": "string",
@@ -16347,11 +16328,8 @@
           "description": "When the OAuth application was last updated"
         },
         "scopes": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array",
-          "description": "The scopes that the OAuth application requires on a user account"
+          "type": "string",
+          "description": "The scopes that the OAuth application requires on a user account, as a space-separated string"
         },
         "avatar": {
           "type": "string",
@@ -16813,8 +16791,6 @@
               "id",
               "name",
               "display_name",
-              "token",
-              "plain_text_refresh_token",
               "avatar_url",
               "created_at",
               "updated_at",
@@ -16822,9 +16798,7 @@
               "last_used_at",
               "actor_id",
               "actor_display_name",
-              "actor_type",
-              "service_token_accesses",
-              "oauth_accesses_by_resource"
+              "actor_type"
             ]
           }
         }
@@ -17225,8 +17199,6 @@
         "id",
         "name",
         "display_name",
-        "token",
-        "plain_text_refresh_token",
         "avatar_url",
         "created_at",
         "updated_at",
@@ -17234,9 +17206,7 @@
         "last_used_at",
         "actor_id",
         "actor_display_name",
-        "actor_type",
-        "service_token_accesses",
-        "oauth_accesses_by_resource"
+        "actor_type"
       ]
     },
     "PaginatedOrganizationMembership": {
@@ -17341,19 +17311,19 @@
                   },
                   "sso": {
                     "type": "boolean",
-                    "description": "Whether or not the user is managed by SSO"
+                    "description": "Whether or not the user is managed by SSO."
                   },
                   "managed": {
                     "type": "boolean",
-                    "description": "Whether or not the user is managed by an authentication provider"
+                    "description": "Whether or not the user is managed by an authentication provider."
                   },
                   "directory_managed": {
                     "type": "boolean",
-                    "description": "Whether or not the user is managed by a SSO directory"
+                    "description": "Whether or not the user is managed by a SSO directory."
                   },
                   "email_verified": {
                     "type": "boolean",
-                    "description": "Whether or not the user is verified by email"
+                    "description": "Whether or not the user is verified by email."
                   }
                 },
                 "additionalProperties": false,
@@ -17365,12 +17335,7 @@
                   "avatar_url",
                   "created_at",
                   "updated_at",
-                  "two_factor_auth_configured",
-                  "default_organization",
-                  "sso",
-                  "managed",
-                  "directory_managed",
-                  "email_verified"
+                  "two_factor_auth_configured"
                 ]
               },
               "role": {
@@ -17488,19 +17453,19 @@
             },
             "sso": {
               "type": "boolean",
-              "description": "Whether or not the user is managed by SSO"
+              "description": "Whether or not the user is managed by SSO."
             },
             "managed": {
               "type": "boolean",
-              "description": "Whether or not the user is managed by an authentication provider"
+              "description": "Whether or not the user is managed by an authentication provider."
             },
             "directory_managed": {
               "type": "boolean",
-              "description": "Whether or not the user is managed by a SSO directory"
+              "description": "Whether or not the user is managed by a SSO directory."
             },
             "email_verified": {
               "type": "boolean",
-              "description": "Whether or not the user is verified by email"
+              "description": "Whether or not the user is verified by email."
             }
           },
           "additionalProperties": false,
@@ -17512,12 +17477,7 @@
             "avatar_url",
             "created_at",
             "updated_at",
-            "two_factor_auth_configured",
-            "default_organization",
-            "sso",
-            "managed",
-            "directory_managed",
-            "email_verified"
+            "two_factor_auth_configured"
           ]
         },
         "role": {
@@ -17620,7 +17580,7 @@
               },
               "has_past_due_invoices": {
                 "type": "boolean",
-                "description": "Whether or not the organization has past due billing invoices"
+                "description": "Whether or not the organization has past due billing invoices."
               },
               "database_count": {
                 "type": "integer",
@@ -17628,7 +17588,7 @@
               },
               "sso_portal_url": {
                 "type": "string",
-                "description": "The URL of the organization's SSO portal"
+                "description": "The URL of the organization's SSO portal."
               },
               "features": {
                 "type": "object",
@@ -17669,9 +17629,7 @@
               "sso_directory",
               "single_tenancy",
               "managed_tenancy",
-              "has_past_due_invoices",
               "database_count",
-              "sso_portal_url",
               "features",
               "idp_managed_roles",
               "invoice_budget_amount",
@@ -17741,7 +17699,7 @@
         },
         "has_past_due_invoices": {
           "type": "boolean",
-          "description": "Whether or not the organization has past due billing invoices"
+          "description": "Whether or not the organization has past due billing invoices."
         },
         "database_count": {
           "type": "integer",
@@ -17749,7 +17707,7 @@
         },
         "sso_portal_url": {
           "type": "string",
-          "description": "The URL of the organization's SSO portal"
+          "description": "The URL of the organization's SSO portal."
         },
         "features": {
           "type": "object",
@@ -17790,9 +17748,7 @@
         "sso_directory",
         "single_tenancy",
         "managed_tenancy",
-        "has_past_due_invoices",
         "database_count",
-        "sso_portal_url",
         "features",
         "idp_managed_roles",
         "invoice_budget_amount",
@@ -17882,7 +17838,6 @@
         "default_vtgate",
         "default_vtgate_rate",
         "sort_order",
-        "architecture",
         "development",
         "production"
       ]
@@ -20426,19 +20381,19 @@
         },
         "sso": {
           "type": "boolean",
-          "description": "Whether or not the user is managed by SSO"
+          "description": "Whether or not the user is managed by SSO."
         },
         "managed": {
           "type": "boolean",
-          "description": "Whether or not the user is managed by an authentication provider"
+          "description": "Whether or not the user is managed by an authentication provider."
         },
         "directory_managed": {
           "type": "boolean",
-          "description": "Whether or not the user is managed by a SSO directory"
+          "description": "Whether or not the user is managed by a SSO directory."
         },
         "email_verified": {
           "type": "boolean",
-          "description": "Whether or not the user is verified by email"
+          "description": "Whether or not the user is verified by email."
         }
       },
       "additionalProperties": false,
@@ -20450,12 +20405,7 @@
         "avatar_url",
         "created_at",
         "updated_at",
-        "two_factor_auth_configured",
-        "default_organization",
-        "sso",
-        "managed",
-        "directory_managed",
-        "email_verified"
+        "two_factor_auth_configured"
       ]
     },
     "PaginatedWorkflow": {
@@ -21962,7 +21912,7 @@
                   },
                   "deploy_check_errors": {
                     "type": "string",
-                    "description": "Deploy check errors for the deployment"
+                    "description": "Deploy check errors for the deployment."
                   },
                   "finished_at": {
                     "type": "string",
@@ -22340,12 +22290,9 @@
                     "description": "Lookup Vitess index operations"
                   },
                   "throttler_configurations": {
-                    "items": {
-                      "type": "object",
-                      "additionalProperties": true
-                    },
-                    "type": "array",
-                    "description": "Deployment throttling configurations"
+                    "type": "object",
+                    "additionalProperties": true,
+                    "description": "Deployment throttling configurations."
                   },
                   "deployment_revert_request": {
                     "type": "object",
@@ -22431,7 +22378,7 @@
                   },
                   "locked_table_name": {
                     "type": "string",
-                    "description": "The name of he table that is locked by the deployment"
+                    "description": "The name of the table that is locked by the deployment."
                   },
                   "instant_ddl": {
                     "type": "boolean",
@@ -22440,6 +22387,14 @@
                   "instant_ddl_eligible": {
                     "type": "boolean",
                     "description": "Whether or not the deployment is eligible for instant DDL"
+                  },
+                  "queue_paused": {
+                    "type": "boolean",
+                    "description": "Whether the deploy queue for the target branch is currently paused"
+                  },
+                  "queue_pause_reason": {
+                    "type": "string",
+                    "description": "A human-readable reason the deploy queue is paused, if known"
                   }
                 },
                 "additionalProperties": false,
@@ -22450,7 +22405,6 @@
                   "created_at",
                   "cutover_at",
                   "cutover_expiring",
-                  "deploy_check_errors",
                   "finished_at",
                   "queued_at",
                   "ready_to_cutover_at",
@@ -22467,16 +22421,13 @@
                   "lint_errors",
                   "sequential_diff_dependencies",
                   "lookup_vindex_operations",
-                  "throttler_configurations",
                   "deployment_revert_request",
-                  "actor",
-                  "cutover_actor",
-                  "cancelled_actor",
                   "schema_last_updated_at",
                   "table_locked",
-                  "locked_table_name",
                   "instant_ddl",
-                  "instant_ddl_eligible"
+                  "instant_ddl_eligible",
+                  "queue_paused",
+                  "queue_pause_reason"
                 ]
               },
               "num_comments": {
@@ -22517,11 +22468,9 @@
               "id",
               "number",
               "actor",
-              "closed_by",
               "branch",
               "branch_id",
               "branch_deleted",
-              "branch_deleted_by",
               "branch_deleted_at",
               "into_branch",
               "into_branch_sharded",
@@ -22727,7 +22676,7 @@
             },
             "deploy_check_errors": {
               "type": "string",
-              "description": "Deploy check errors for the deployment"
+              "description": "Deploy check errors for the deployment."
             },
             "finished_at": {
               "type": "string",
@@ -23105,12 +23054,9 @@
               "description": "Lookup Vitess index operations"
             },
             "throttler_configurations": {
-              "items": {
-                "type": "object",
-                "additionalProperties": true
-              },
-              "type": "array",
-              "description": "Deployment throttling configurations"
+              "type": "object",
+              "additionalProperties": true,
+              "description": "Deployment throttling configurations."
             },
             "deployment_revert_request": {
               "type": "object",
@@ -23196,7 +23142,7 @@
             },
             "locked_table_name": {
               "type": "string",
-              "description": "The name of he table that is locked by the deployment"
+              "description": "The name of the table that is locked by the deployment."
             },
             "instant_ddl": {
               "type": "boolean",
@@ -23205,6 +23151,14 @@
             "instant_ddl_eligible": {
               "type": "boolean",
               "description": "Whether or not the deployment is eligible for instant DDL"
+            },
+            "queue_paused": {
+              "type": "boolean",
+              "description": "Whether the deploy queue for the target branch is currently paused"
+            },
+            "queue_pause_reason": {
+              "type": "string",
+              "description": "A human-readable reason the deploy queue is paused, if known"
             }
           },
           "additionalProperties": false,
@@ -23215,7 +23169,6 @@
             "created_at",
             "cutover_at",
             "cutover_expiring",
-            "deploy_check_errors",
             "finished_at",
             "queued_at",
             "ready_to_cutover_at",
@@ -23232,16 +23185,13 @@
             "lint_errors",
             "sequential_diff_dependencies",
             "lookup_vindex_operations",
-            "throttler_configurations",
             "deployment_revert_request",
-            "actor",
-            "cutover_actor",
-            "cancelled_actor",
             "schema_last_updated_at",
             "table_locked",
-            "locked_table_name",
             "instant_ddl",
-            "instant_ddl_eligible"
+            "instant_ddl_eligible",
+            "queue_paused",
+            "queue_pause_reason"
           ]
         },
         "num_comments": {
@@ -23282,11 +23232,9 @@
         "id",
         "number",
         "actor",
-        "closed_by",
         "branch",
         "branch_id",
         "branch_deleted",
-        "branch_deleted_by",
         "branch_deleted_at",
         "into_branch",
         "into_branch_sharded",
@@ -23334,7 +23282,7 @@
         },
         "deploy_check_errors": {
           "type": "string",
-          "description": "Deploy check errors for the deployment"
+          "description": "Deploy check errors for the deployment."
         },
         "finished_at": {
           "type": "string",
@@ -23712,12 +23660,9 @@
           "description": "Lookup Vitess index operations"
         },
         "throttler_configurations": {
-          "items": {
-            "type": "object",
-            "additionalProperties": true
-          },
-          "type": "array",
-          "description": "Deployment throttling configurations"
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Deployment throttling configurations."
         },
         "deployment_revert_request": {
           "type": "object",
@@ -23803,7 +23748,7 @@
         },
         "locked_table_name": {
           "type": "string",
-          "description": "The name of he table that is locked by the deployment"
+          "description": "The name of the table that is locked by the deployment."
         },
         "instant_ddl": {
           "type": "boolean",
@@ -23812,6 +23757,14 @@
         "instant_ddl_eligible": {
           "type": "boolean",
           "description": "Whether or not the deployment is eligible for instant DDL"
+        },
+        "queue_paused": {
+          "type": "boolean",
+          "description": "Whether the deploy queue for the target branch is currently paused"
+        },
+        "queue_pause_reason": {
+          "type": "string",
+          "description": "A human-readable reason the deploy queue is paused, if known"
         }
       },
       "additionalProperties": false,
@@ -23822,7 +23775,6 @@
         "created_at",
         "cutover_at",
         "cutover_expiring",
-        "deploy_check_errors",
         "finished_at",
         "queued_at",
         "ready_to_cutover_at",
@@ -23839,16 +23791,13 @@
         "lint_errors",
         "sequential_diff_dependencies",
         "lookup_vindex_operations",
-        "throttler_configurations",
         "deployment_revert_request",
-        "actor",
-        "cutover_actor",
-        "cancelled_actor",
         "schema_last_updated_at",
         "table_locked",
-        "locked_table_name",
         "instant_ddl",
-        "instant_ddl_eligible"
+        "instant_ddl_eligible",
+        "queue_paused",
+        "queue_pause_reason"
       ]
     },
     "PaginatedDeployOperation": {
@@ -24056,7 +24005,7 @@
               },
               "deploy_check_errors": {
                 "type": "string",
-                "description": "Deploy check errors for the deployment"
+                "description": "Deploy check errors for the deployment."
               },
               "finished_at": {
                 "type": "string",
@@ -24434,12 +24383,9 @@
                 "description": "Lookup Vitess index operations"
               },
               "throttler_configurations": {
-                "items": {
-                  "type": "object",
-                  "additionalProperties": true
-                },
-                "type": "array",
-                "description": "Deployment throttling configurations"
+                "type": "object",
+                "additionalProperties": true,
+                "description": "Deployment throttling configurations."
               },
               "deployment_revert_request": {
                 "type": "object",
@@ -24525,7 +24471,7 @@
               },
               "locked_table_name": {
                 "type": "string",
-                "description": "The name of he table that is locked by the deployment"
+                "description": "The name of the table that is locked by the deployment."
               },
               "instant_ddl": {
                 "type": "boolean",
@@ -24534,6 +24480,14 @@
               "instant_ddl_eligible": {
                 "type": "boolean",
                 "description": "Whether or not the deployment is eligible for instant DDL"
+              },
+              "queue_paused": {
+                "type": "boolean",
+                "description": "Whether the deploy queue for the target branch is currently paused"
+              },
+              "queue_pause_reason": {
+                "type": "string",
+                "description": "A human-readable reason the deploy queue is paused, if known"
               }
             },
             "additionalProperties": false,
@@ -24544,7 +24498,6 @@
               "created_at",
               "cutover_at",
               "cutover_expiring",
-              "deploy_check_errors",
               "finished_at",
               "queued_at",
               "ready_to_cutover_at",
@@ -24561,16 +24514,13 @@
               "lint_errors",
               "sequential_diff_dependencies",
               "lookup_vindex_operations",
-              "throttler_configurations",
               "deployment_revert_request",
-              "actor",
-              "cutover_actor",
-              "cancelled_actor",
               "schema_last_updated_at",
               "table_locked",
-              "locked_table_name",
               "instant_ddl",
-              "instant_ddl_eligible"
+              "instant_ddl_eligible",
+              "queue_paused",
+              "queue_pause_reason"
             ]
           }
         }
@@ -24928,8 +24878,8 @@
                 "description": "The ID of the invoice"
               },
               "total": {
-                "type": "number",
-                "description": "The total amount of the invoice"
+                "type": "string",
+                "description": "The total amount of the invoice, as a stringified decimal to preserve precision"
               },
               "billing_period_start": {
                 "type": "string",
@@ -24978,8 +24928,8 @@
           "description": "The ID of the invoice"
         },
         "total": {
-          "type": "number",
-          "description": "The total amount of the invoice"
+          "type": "string",
+          "description": "The total amount of the invoice, as a stringified decimal to preserve precision"
         },
         "billing_period_start": {
           "type": "string",
@@ -25110,19 +25060,19 @@
                   },
                   "sso": {
                     "type": "boolean",
-                    "description": "Whether or not the user is managed by SSO"
+                    "description": "Whether or not the user is managed by SSO."
                   },
                   "managed": {
                     "type": "boolean",
-                    "description": "Whether or not the user is managed by an authentication provider"
+                    "description": "Whether or not the user is managed by an authentication provider."
                   },
                   "directory_managed": {
                     "type": "boolean",
-                    "description": "Whether or not the user is managed by a SSO directory"
+                    "description": "Whether or not the user is managed by a SSO directory."
                   },
                   "email_verified": {
                     "type": "boolean",
-                    "description": "Whether or not the user is verified by email"
+                    "description": "Whether or not the user is verified by email."
                   }
                 },
                 "additionalProperties": false,
@@ -25134,12 +25084,7 @@
                   "avatar_url",
                   "created_at",
                   "updated_at",
-                  "two_factor_auth_configured",
-                  "default_organization",
-                  "sso",
-                  "managed",
-                  "directory_managed",
-                  "email_verified"
+                  "two_factor_auth_configured"
                 ]
               },
               "actor": {
@@ -25333,7 +25278,7 @@
                     },
                     "plain_text": {
                       "type": "string",
-                      "description": "The plain text password, available only after create"
+                      "description": "The plain text password. Null except in the response from the create endpoint."
                     },
                     "replica": {
                       "type": "boolean",
@@ -25504,19 +25449,19 @@
             },
             "sso": {
               "type": "boolean",
-              "description": "Whether or not the user is managed by SSO"
+              "description": "Whether or not the user is managed by SSO."
             },
             "managed": {
               "type": "boolean",
-              "description": "Whether or not the user is managed by an authentication provider"
+              "description": "Whether or not the user is managed by an authentication provider."
             },
             "directory_managed": {
               "type": "boolean",
-              "description": "Whether or not the user is managed by a SSO directory"
+              "description": "Whether or not the user is managed by a SSO directory."
             },
             "email_verified": {
               "type": "boolean",
-              "description": "Whether or not the user is verified by email"
+              "description": "Whether or not the user is verified by email."
             }
           },
           "additionalProperties": false,
@@ -25528,12 +25473,7 @@
             "avatar_url",
             "created_at",
             "updated_at",
-            "two_factor_auth_configured",
-            "default_organization",
-            "sso",
-            "managed",
-            "directory_managed",
-            "email_verified"
+            "two_factor_auth_configured"
           ]
         },
         "actor": {
@@ -25727,7 +25667,7 @@
               },
               "plain_text": {
                 "type": "string",
-                "description": "The plain text password, available only after create"
+                "description": "The plain text password. Null except in the response from the create endpoint."
               },
               "replica": {
                 "type": "boolean",
@@ -25940,19 +25880,19 @@
                     },
                     "sso": {
                       "type": "boolean",
-                      "description": "Whether or not the user is managed by SSO"
+                      "description": "Whether or not the user is managed by SSO."
                     },
                     "managed": {
                       "type": "boolean",
-                      "description": "Whether or not the user is managed by an authentication provider"
+                      "description": "Whether or not the user is managed by an authentication provider."
                     },
                     "directory_managed": {
                       "type": "boolean",
-                      "description": "Whether or not the user is managed by a SSO directory"
+                      "description": "Whether or not the user is managed by a SSO directory."
                     },
                     "email_verified": {
                       "type": "boolean",
-                      "description": "Whether or not the user is verified by email"
+                      "description": "Whether or not the user is verified by email."
                     }
                   },
                   "additionalProperties": false,
@@ -25964,12 +25904,7 @@
                     "avatar_url",
                     "created_at",
                     "updated_at",
-                    "two_factor_auth_configured",
-                    "default_organization",
-                    "sso",
-                    "managed",
-                    "directory_managed",
-                    "email_verified"
+                    "two_factor_auth_configured"
                   ]
                 }
               },
@@ -26162,19 +26097,19 @@
               },
               "sso": {
                 "type": "boolean",
-                "description": "Whether or not the user is managed by SSO"
+                "description": "Whether or not the user is managed by SSO."
               },
               "managed": {
                 "type": "boolean",
-                "description": "Whether or not the user is managed by an authentication provider"
+                "description": "Whether or not the user is managed by an authentication provider."
               },
               "directory_managed": {
                 "type": "boolean",
-                "description": "Whether or not the user is managed by a SSO directory"
+                "description": "Whether or not the user is managed by a SSO directory."
               },
               "email_verified": {
                 "type": "boolean",
-                "description": "Whether or not the user is verified by email"
+                "description": "Whether or not the user is verified by email."
               }
             },
             "additionalProperties": false,
@@ -26186,12 +26121,7 @@
               "avatar_url",
               "created_at",
               "updated_at",
-              "two_factor_auth_configured",
-              "default_organization",
-              "sso",
-              "managed",
-              "directory_managed",
-              "email_verified"
+              "two_factor_auth_configured"
             ]
           }
         },
