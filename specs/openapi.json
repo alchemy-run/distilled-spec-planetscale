@@ -26380,6 +26380,36 @@
                   ]
                 }
               },
+              "analyst_databases": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The ID of the database"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "The name of the database"
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "The URL to the database API endpoint"
+                    },
+                    "branches_url": {
+                      "type": "string",
+                      "description": "The URL to retrieve this database's branches via the API"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "url",
+                    "branches_url"
+                  ]
+                }
+              },
               "name": {
                 "type": "string",
                 "description": "The name of the team"
@@ -26412,6 +26442,7 @@
               "creator",
               "members",
               "databases",
+              "analyst_databases",
               "name",
               "slug",
               "created_at",
@@ -26599,6 +26630,36 @@
             ]
           }
         },
+        "analyst_databases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The ID of the database"
+              },
+              "name": {
+                "type": "string",
+                "description": "The name of the database"
+              },
+              "url": {
+                "type": "string",
+                "description": "The URL to the database API endpoint"
+              },
+              "branches_url": {
+                "type": "string",
+                "description": "The URL to retrieve this database's branches via the API"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "url",
+              "branches_url"
+            ]
+          }
+        },
         "name": {
           "type": "string",
           "description": "The name of the team"
@@ -26631,6 +26692,7 @@
         "creator",
         "members",
         "databases",
+        "analyst_databases",
         "name",
         "slug",
         "created_at",
