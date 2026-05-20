@@ -14015,12 +14015,10 @@
                       "lag",
                       "always"
                     ],
-                    "description": "The replication durability strategy"
+                    "description": "The replication durability strategy",
+                    "x-nullable": true
                   }
-                },
-                "required": [
-                  "strategy"
-                ]
+                }
               },
               "vreplication_flags": {
                 "type": "object",
@@ -14188,12 +14186,10 @@
                 "lag",
                 "always"
               ],
-              "description": "The replication durability strategy"
+              "description": "The replication durability strategy",
+              "x-nullable": true
             }
-          },
-          "required": [
-            "strategy"
-          ]
+          }
         },
         "vreplication_flags": {
           "type": "object",
@@ -22707,7 +22703,8 @@
                   },
                   "queue_pause_reason": {
                     "type": "string",
-                    "description": "A human-readable reason the deploy queue is paused, if known"
+                    "description": "A human-readable reason the deploy queue is paused, if known",
+                    "x-nullable": true
                   }
                 },
                 "required": [
@@ -23488,7 +23485,8 @@
             },
             "queue_pause_reason": {
               "type": "string",
-              "description": "A human-readable reason the deploy queue is paused, if known"
+              "description": "A human-readable reason the deploy queue is paused, if known",
+              "x-nullable": true
             }
           },
           "required": [
@@ -24111,7 +24109,8 @@
         },
         "queue_pause_reason": {
           "type": "string",
-          "description": "A human-readable reason the deploy queue is paused, if known"
+          "description": "A human-readable reason the deploy queue is paused, if known",
+          "x-nullable": true
         }
       },
       "required": [
@@ -24872,7 +24871,8 @@
               },
               "queue_pause_reason": {
                 "type": "string",
-                "description": "A human-readable reason the deploy queue is paused, if known"
+                "description": "A human-readable reason the deploy queue is paused, if known",
+                "x-nullable": true
               }
             },
             "required": [
