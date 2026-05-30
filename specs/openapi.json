@@ -7093,6 +7093,63 @@
         "description": "Get the deployment for a deploy request\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_deploy_request`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_deploy_requests` |\n| Database | `read_deploy_requests` |"
       }
     },
+    "/organizations/{organization}/databases/{database}/deploy-requests/{number}/force-cutover": {
+      "post": {
+        "tags": [
+          "Deploy requests"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "force_cutover_deploy_request",
+        "summary": "Enable force cutover for a deploy request",
+        "parameters": [
+          {
+            "name": "organization",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "The name of the deploy request's organization"
+          },
+          {
+            "name": "database",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "The name of the deploy request's database"
+          },
+          {
+            "name": "number",
+            "type": "integer",
+            "in": "path",
+            "required": true,
+            "description": "The number of the deploy request"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the deploy request",
+            "schema": {
+              "$ref": "#/definitions/DatabaseDeployRequest"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_deploy_request`, `create_deploy_request`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `deploy_deploy_requests` |\n| Database | `deploy_deploy_requests` |"
+      }
+    },
     "/organizations/{organization}/databases/{database}/deploy-requests/{number}/operations": {
       "get": {
         "tags": [
@@ -22213,6 +22270,11 @@
                     "description": "When the deployment was finished",
                     "x-nullable": true
                   },
+                  "force_cutover_requested_at": {
+                    "type": "string",
+                    "description": "When force cutover was triggered for the deployment",
+                    "x-nullable": true
+                  },
                   "queued_at": {
                     "type": "string",
                     "description": "When the deployment was queued",
@@ -22715,6 +22777,7 @@
                   "cutover_at",
                   "cutover_expiring",
                   "finished_at",
+                  "force_cutover_requested_at",
                   "queued_at",
                   "ready_to_cutover_at",
                   "started_at",
@@ -22993,6 +23056,11 @@
             "finished_at": {
               "type": "string",
               "description": "When the deployment was finished",
+              "x-nullable": true
+            },
+            "force_cutover_requested_at": {
+              "type": "string",
+              "description": "When force cutover was triggered for the deployment",
               "x-nullable": true
             },
             "queued_at": {
@@ -23497,6 +23565,7 @@
             "cutover_at",
             "cutover_expiring",
             "finished_at",
+            "force_cutover_requested_at",
             "queued_at",
             "ready_to_cutover_at",
             "started_at",
@@ -23617,6 +23686,11 @@
         "finished_at": {
           "type": "string",
           "description": "When the deployment was finished",
+          "x-nullable": true
+        },
+        "force_cutover_requested_at": {
+          "type": "string",
+          "description": "When force cutover was triggered for the deployment",
           "x-nullable": true
         },
         "queued_at": {
@@ -24121,6 +24195,7 @@
         "cutover_at",
         "cutover_expiring",
         "finished_at",
+        "force_cutover_requested_at",
         "queued_at",
         "ready_to_cutover_at",
         "started_at",
@@ -24379,6 +24454,11 @@
               "finished_at": {
                 "type": "string",
                 "description": "When the deployment was finished",
+                "x-nullable": true
+              },
+              "force_cutover_requested_at": {
+                "type": "string",
+                "description": "When force cutover was triggered for the deployment",
                 "x-nullable": true
               },
               "queued_at": {
@@ -24883,6 +24963,7 @@
               "cutover_at",
               "cutover_expiring",
               "finished_at",
+              "force_cutover_requested_at",
               "queued_at",
               "ready_to_cutover_at",
               "started_at",
