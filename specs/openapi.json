@@ -4415,6 +4415,18 @@
             "in": "query",
             "default": 25,
             "description": "If provided, specifies the number of returned results"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "in": "query",
+            "description": "Filter roles by status"
+          },
+          {
+            "name": "q",
+            "type": "string",
+            "in": "query",
+            "description": "Search roles by name or username"
           }
         ],
         "responses": {
