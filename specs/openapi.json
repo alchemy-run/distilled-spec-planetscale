@@ -13626,9 +13626,14 @@
           "type": "boolean",
           "description": "The internal state of the extension"
         },
-        "shared_preload_allowed": {
-          "type": "boolean",
-          "description": "Whether the extension can be added to shared_preload_libraries"
+        "loader": {
+          "type": "string",
+          "enum": [
+            "shared_preload_libraries",
+            "session_preload_libraries",
+            "create_extension"
+          ],
+          "description": "How the extension is loaded"
         },
         "url": {
           "type": "string",
@@ -13800,7 +13805,7 @@
         "name",
         "description",
         "internal",
-        "shared_preload_allowed",
+        "loader",
         "url",
         "available",
         "unavailable_reason",
