@@ -5609,7 +5609,8 @@
                 "kind": {
                   "type": "string",
                   "enum": [
-                    "match"
+                    "match",
+                    "each"
                   ],
                   "description": "Kind of rule"
                 },
@@ -20235,7 +20236,8 @@
                     "kind": {
                       "type": "string",
                       "enum": [
-                        "match"
+                        "match",
+                        "each"
                       ],
                       "description": "The kind of rule"
                     },
@@ -20439,7 +20441,8 @@
               "kind": {
                 "type": "string",
                 "enum": [
-                  "match"
+                  "match",
+                  "each"
                 ],
                 "description": "The kind of rule"
               },
@@ -20562,7 +20565,8 @@
         "kind": {
           "type": "string",
           "enum": [
-            "match"
+            "match",
+            "each"
           ],
           "description": "The kind of rule"
         },
