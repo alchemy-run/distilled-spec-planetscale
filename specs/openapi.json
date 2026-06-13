@@ -5627,7 +5627,7 @@
                   "items": {
                     "type": "string"
                   },
-                  "description": "Optional array of tags for this rule"
+                  "description": "Optional array of tags for this rule. Each rules take exactly one tag."
                 }
               }
             }
@@ -12960,6 +12960,10 @@
                 "type": "integer",
                 "description": "The number of shards in the branch"
               },
+              "keyspace_count": {
+                "type": "integer",
+                "description": "The number of keyspaces in the branch"
+              },
               "stale_schema": {
                 "type": "boolean",
                 "description": "Whether or not the branch has a stale schema"
@@ -13136,6 +13140,7 @@
               "safe_migrations",
               "sharded",
               "shard_count",
+              "keyspace_count",
               "stale_schema",
               "actor",
               "restored_from_branch",
@@ -13270,6 +13275,10 @@
         "shard_count": {
           "type": "integer",
           "description": "The number of shards in the branch"
+        },
+        "keyspace_count": {
+          "type": "integer",
+          "description": "The number of keyspaces in the branch"
         },
         "stale_schema": {
           "type": "boolean",
@@ -13447,6 +13456,7 @@
         "safe_migrations",
         "sharded",
         "shard_count",
+        "keyspace_count",
         "stale_schema",
         "actor",
         "restored_from_branch",
@@ -22215,6 +22225,10 @@
                 "type": "integer",
                 "description": "The number of shards the branch the deploy request will be merged into has"
               },
+              "into_branch_keyspace_count": {
+                "type": "integer",
+                "description": "The number of keyspaces the branch the deploy request will be merged into has"
+              },
               "approved": {
                 "type": "boolean",
                 "description": "Whether or not the deploy request is approved"
@@ -22869,6 +22883,7 @@
               "into_branch",
               "into_branch_sharded",
               "into_branch_shard_count",
+              "into_branch_keyspace_count",
               "approved",
               "state",
               "deployment_state",
@@ -23002,6 +23017,10 @@
         "into_branch_shard_count": {
           "type": "integer",
           "description": "The number of shards the branch the deploy request will be merged into has"
+        },
+        "into_branch_keyspace_count": {
+          "type": "integer",
+          "description": "The number of keyspaces the branch the deploy request will be merged into has"
         },
         "approved": {
           "type": "boolean",
@@ -23657,6 +23676,7 @@
         "into_branch",
         "into_branch_sharded",
         "into_branch_shard_count",
+        "into_branch_keyspace_count",
         "approved",
         "state",
         "deployment_state",
@@ -25282,6 +25302,10 @@
                 "type": "string",
                 "description": "The name of the billable item"
               },
+              "cloudflare_billed": {
+                "type": "boolean",
+                "description": "Whether the line item is billed through Cloudflare"
+              },
               "database_id": {
                 "type": "string",
                 "description": "The ID for the billed database"
@@ -25329,6 +25353,7 @@
               "subtotal",
               "description",
               "metric_name",
+              "cloudflare_billed",
               "database_id",
               "database_name",
               "resource"
