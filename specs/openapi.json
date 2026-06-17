@@ -16534,6 +16534,10 @@
                 "type": "boolean",
                 "description": "Whether the OAuth application is limited to authorizing a single organization"
               },
+              "requires_org_scope": {
+                "type": "boolean",
+                "description": "Whether the OAuth application requires at least one organization to be authorized"
+              },
               "scopes_by_resource": {
                 "type": "object",
                 "additionalProperties": true,
@@ -16558,6 +16562,7 @@
               "tokens",
               "dcr",
               "single_org_authorization",
+              "requires_org_scope",
               "scopes_by_resource",
               "all_scopes_by_resource"
             ]
@@ -16625,6 +16630,10 @@
           "type": "boolean",
           "description": "Whether the OAuth application is limited to authorizing a single organization"
         },
+        "requires_org_scope": {
+          "type": "boolean",
+          "description": "Whether the OAuth application requires at least one organization to be authorized"
+        },
         "scopes_by_resource": {
           "type": "object",
           "additionalProperties": true,
@@ -16649,6 +16658,7 @@
         "tokens",
         "dcr",
         "single_org_authorization",
+        "requires_org_scope",
         "scopes_by_resource",
         "all_scopes_by_resource"
       ]
