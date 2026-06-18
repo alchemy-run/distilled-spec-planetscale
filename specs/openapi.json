@@ -3534,6 +3534,18 @@
             "description": "A read-only region of the database branch. If present, the password results will be filtered to only those in the region"
           },
           {
+            "name": "status",
+            "type": "string",
+            "in": "query",
+            "description": "Filter passwords by status"
+          },
+          {
+            "name": "q",
+            "type": "string",
+            "in": "query",
+            "description": "Search passwords by name"
+          },
+          {
             "name": "page",
             "type": "integer",
             "in": "query",
