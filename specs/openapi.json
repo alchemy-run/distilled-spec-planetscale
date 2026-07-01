@@ -5576,7 +5576,7 @@
             "description": "Internal Server Error"
           }
         },
-        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `create_branch`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `write_branches` |\n| Database | `write_branches` |\n| Branch | `write_branch` |"
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `write_database`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `write_databases` |\n| Database | `write_database` |"
       }
     },
     "/organizations/{organization}/databases/{database}/branches/{branch}/traffic/budgets/{budget_id}/rules": {
@@ -5672,7 +5672,7 @@
             "description": "Internal Server Error"
           }
         },
-        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `create_branch`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `write_branches` |\n| Database | `write_branches` |\n| Branch | `write_branch` |"
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `write_database`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `write_databases` |\n| Database | `write_database` |"
       }
     },
     "/organizations/{organization}/databases/{database}/branches/{branch}/traffic/budgets/{budget_id}/rules/{id}": {
@@ -5740,7 +5740,7 @@
             "description": "Internal Server Error"
           }
         },
-        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `delete_branch`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `delete_branches`, `delete_production_branches` |\n| Database | `delete_branches`, `delete_production_branches` |\n| Branch | `delete_branch` |"
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `write_database`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `write_databases` |\n| Database | `write_database` |"
       }
     },
     "/organizations/{organization}/databases/{database}/branches/{branch}/traffic/budgets/{id}": {
@@ -5915,7 +5915,7 @@
             "description": "Internal Server Error"
           }
         },
-        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `create_branch`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `write_branches` |\n| Database | `write_branches` |\n| Branch | `write_branch` |"
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `write_database`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `write_databases` |\n| Database | `write_database` |"
       },
       "delete": {
         "tags": [
@@ -5974,7 +5974,7 @@
             "description": "Internal Server Error"
           }
         },
-        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `delete_branch`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `delete_branches`, `delete_production_branches` |\n| Database | `delete_branches`, `delete_production_branches` |\n| Branch | `delete_branch` |"
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `write_database`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `write_databases` |\n| Database | `write_database` |"
       }
     },
     "/organizations/{organization}/databases/{database}/cidrs": {
