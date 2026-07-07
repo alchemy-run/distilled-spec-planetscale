@@ -2504,7 +2504,7 @@
           "application/json"
         ],
         "operationId": "update_branch_change_request",
-        "summary": "Upsert a change request",
+        "summary": "Upsert a change request for cluster size, replicas, storage, or parameters",
         "parameters": [
           {
             "name": "organization",
@@ -2545,6 +2545,31 @@
                   "type": "object",
                   "additionalProperties": true,
                   "description": "Cluster configuration parameters nested by namespace (e.g., {\"pgconf\": {\"max_connections\": \"200\"}}). Use the 'List cluster parameters' endpoint to retrieve available parameters. Supported namespaces include 'patroni', 'pgconf', and 'pgbouncer'."
+                },
+                "storage": {
+                  "type": "object",
+                  "properties": {
+                    "minimum_storage_bytes": {
+                      "type": "integer",
+                      "description": "The minimum storage size in bytes."
+                    },
+                    "maximum_storage_bytes": {
+                      "type": "integer",
+                      "description": "The maximum storage size in bytes for autoscaling."
+                    },
+                    "storage_autoscaling": {
+                      "type": "boolean",
+                      "description": "Whether storage autoscaling is enabled."
+                    },
+                    "storage_iops": {
+                      "type": "integer",
+                      "description": "The storage IOPS."
+                    },
+                    "storage_throughput_mibs": {
+                      "type": "integer",
+                      "description": "The storage throughput in MiB/s."
+                    }
+                  }
                 }
               }
             }
@@ -3498,7 +3523,7 @@
             "description": "Internal Server Error"
           }
         },
-        "description": "        Returns the parameters for a branch. To update the parameters, use the \"Upsert a change request\" endpoint.\n\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_branch`, `delete_branch`, `create_branch`, `connect_production_branch`, `connect_branch`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_branches` |\n| Database | `read_branches` |\n| Branch | `read_branch` |"
+        "description": "        Returns the parameters for a branch. To update the parameters, use the \"update_branch_change_request\" endpoint.\n\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_branch`, `delete_branch`, `create_branch`, `connect_production_branch`, `connect_branch`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_branches` |\n| Database | `read_branches` |\n| Branch | `read_branch` |"
       }
     },
     "/organizations/{organization}/databases/{database}/branches/{branch}/passwords": {
