@@ -2854,6 +2854,1355 @@
         "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_branch`, `delete_branch`, `create_branch`, `connect_production_branch`, `connect_branch`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_branches` |\n| Database | `read_branches` |\n| Branch | `read_branch` |"
       }
     },
+    "/organizations/{organization}/databases/{database}/branches/{branch}/insights": {
+      "get": {
+        "tags": [
+          "api-query_insights"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "list_branch_queries",
+        "summary": "List branch queries",
+        "parameters": [
+          {
+            "name": "organization",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Organization name slug from `list_organizations`. Example: `acme`."
+          },
+          {
+            "name": "database",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Database name slug from `list_databases`. Example: `app-db`."
+          },
+          {
+            "name": "branch",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Branch name from `list_branches`. Example: `main`."
+          },
+          {
+            "name": "q",
+            "type": "string",
+            "in": "query",
+            "description": "Search query statistics by SQL pattern"
+          },
+          {
+            "name": "from",
+            "type": "string",
+            "in": "query",
+            "description": "Start time for filtering query statistics (ISO 8601 timestamp)"
+          },
+          {
+            "name": "to",
+            "type": "string",
+            "in": "query",
+            "description": "End time for filtering query statistics (ISO 8601 timestamp)"
+          },
+          {
+            "name": "period",
+            "type": "string",
+            "in": "query",
+            "description": "Time period for filtering query statistics (e.g., '1h', '24h')"
+          },
+          {
+            "name": "sort",
+            "type": "string",
+            "enum": [
+              "keyspace",
+              "query",
+              "lastRun",
+              "count",
+              "errorCount",
+              "rowsRead",
+              "rowsAffected",
+              "rowsReturned",
+              "rowsReadPerReturned",
+              "rowsReadPerQuery",
+              "rowsReturnedPerQuery",
+              "rowsAffectedPerQuery",
+              "totalTime",
+              "cpuTime",
+              "ioTime",
+              "sumShardQueries",
+              "maxShardQueries",
+              "avgShardQueries",
+              "table",
+              "qualifiedTable",
+              "tableKeyspace",
+              "indexes",
+              "routingIndexes",
+              "p50Latency",
+              "p99Latency",
+              "maxLatency",
+              "percentTime",
+              "percentCpuTime",
+              "percentIoTime",
+              "egressBytes",
+              "egressBytesPerQuery",
+              "maxEgressBytes",
+              "ingressBytes",
+              "ingressBytesPerQuery",
+              "maxIngressBytes",
+              "blocksRead",
+              "blocksHit",
+              "blockCacheHitRatio",
+              "blocksDirtied",
+              "blocksWritten",
+              "trafficControlWarnings",
+              "trafficControlThrottled",
+              "trafficControlChecked",
+              "trafficControlBudgetsUsed"
+            ],
+            "in": "query",
+            "description": "Field to sort by"
+          },
+          {
+            "name": "dir",
+            "type": "string",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "description": "Sort direction"
+          },
+          {
+            "name": "tablet_type",
+            "type": "string",
+            "enum": [
+              "primary",
+              "replica",
+              "rdonly"
+            ],
+            "in": "query",
+            "description": "Filter by tablet type"
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "enum": [
+              "SELECT",
+              "INSERT",
+              "UPDATE",
+              "DELETE"
+            ],
+            "in": "query",
+            "description": "Filter by statement type"
+          },
+          {
+            "name": "fields",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "in": "query",
+            "description": "Specific fields to include in the response"
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "in": "query",
+            "default": 1,
+            "description": "If provided, specifies the page offset of returned results"
+          },
+          {
+            "name": "per_page",
+            "type": "integer",
+            "in": "query",
+            "default": 25,
+            "description": "If provided, specifies the number of returned results"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns query statistics summaries",
+            "schema": {
+              "$ref": "#/definitions/PaginatedQuerySummary"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_databases`, `read_database`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_databases` |\n| Database | `read_database` |"
+      }
+    },
+    "/organizations/{organization}/databases/{database}/branches/{branch}/insights/anomalies": {
+      "get": {
+        "tags": [
+          "api-anomalies"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "list_branch_anomalies",
+        "summary": "List branch anomalies",
+        "parameters": [
+          {
+            "name": "organization",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Organization name slug from `list_organizations`. Example: `acme`."
+          },
+          {
+            "name": "database",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Database name slug from `list_databases`. Example: `app-db`."
+          },
+          {
+            "name": "branch",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Branch name from `list_branches`. Example: `main`."
+          },
+          {
+            "name": "from",
+            "type": "string",
+            "in": "query",
+            "description": "Start time for filtering anomalies (ISO 8601 timestamp)"
+          },
+          {
+            "name": "to",
+            "type": "string",
+            "in": "query",
+            "description": "End time for filtering anomalies (ISO 8601 timestamp)"
+          },
+          {
+            "name": "period",
+            "type": "string",
+            "in": "query",
+            "description": "Time period for filtering anomalies (e.g., '1h', '24h')"
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "in": "query",
+            "default": 1,
+            "description": "If provided, specifies the page offset of returned results"
+          },
+          {
+            "name": "per_page",
+            "type": "integer",
+            "in": "query",
+            "default": 25,
+            "description": "If provided, specifies the number of returned results"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns anomalies detected on the branch",
+            "schema": {
+              "$ref": "#/definitions/PaginatedAnomaly"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_databases`, `read_database`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_databases` |\n| Database | `read_database` |"
+      }
+    },
+    "/organizations/{organization}/databases/{database}/branches/{branch}/insights/anomalies/{id}": {
+      "get": {
+        "tags": [
+          "api-anomalies"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "get_branch_anomaly",
+        "summary": "Retrieve a branch anomaly",
+        "parameters": [
+          {
+            "name": "organization",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Organization name slug from `list_organizations`. Example: `acme`."
+          },
+          {
+            "name": "database",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Database name slug from `list_databases`. Example: `app-db`."
+          },
+          {
+            "name": "branch",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Branch name from `list_branches`. Example: `main`."
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "The anomaly ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the anomaly and its correlated queries",
+            "schema": {
+              "$ref": "#/definitions/Anomaly"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_databases`, `read_database`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_databases` |\n| Database | `read_database` |"
+      }
+    },
+    "/organizations/{organization}/databases/{database}/branches/{branch}/insights/errors": {
+      "get": {
+        "tags": [
+          "api-query_insights_errors"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "list_branch_query_errors",
+        "summary": "List branch query errors",
+        "parameters": [
+          {
+            "name": "organization",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Organization name slug from `list_organizations`. Example: `acme`."
+          },
+          {
+            "name": "database",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Database name slug from `list_databases`. Example: `app-db`."
+          },
+          {
+            "name": "branch",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Branch name from `list_branches`. Example: `main`."
+          },
+          {
+            "name": "q",
+            "type": "string",
+            "in": "query",
+            "description": "Search query errors by error message"
+          },
+          {
+            "name": "from",
+            "type": "string",
+            "in": "query",
+            "description": "Start time for filtering query errors (ISO 8601 timestamp)"
+          },
+          {
+            "name": "to",
+            "type": "string",
+            "in": "query",
+            "description": "End time for filtering query errors (ISO 8601 timestamp)"
+          },
+          {
+            "name": "period",
+            "type": "string",
+            "in": "query",
+            "description": "Time period for filtering query errors (e.g., '1h', '24h')"
+          },
+          {
+            "name": "sort",
+            "type": "string",
+            "enum": [
+              "error",
+              "lastRun",
+              "count",
+              "totalTime",
+              "timePerQuery"
+            ],
+            "in": "query",
+            "description": "Field to sort by"
+          },
+          {
+            "name": "dir",
+            "type": "string",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "description": "Sort direction"
+          },
+          {
+            "name": "tablet_type",
+            "type": "string",
+            "enum": [
+              "primary",
+              "replica",
+              "rdonly"
+            ],
+            "in": "query",
+            "description": "Filter by tablet type"
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "in": "query",
+            "default": 1,
+            "description": "If provided, specifies the page offset of returned results"
+          },
+          {
+            "name": "per_page",
+            "type": "integer",
+            "in": "query",
+            "default": 25,
+            "description": "If provided, specifies the number of returned results"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns query error summaries",
+            "schema": {
+              "$ref": "#/definitions/PaginatedErrorSummary"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_databases`, `read_database`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_databases` |\n| Database | `read_database` |"
+      }
+    },
+    "/organizations/{organization}/databases/{database}/branches/{branch}/insights/errors/{fingerprint}": {
+      "get": {
+        "tags": [
+          "api-query_insights_errors"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "get_branch_query_error",
+        "summary": "List queries for an error fingerprint",
+        "parameters": [
+          {
+            "name": "organization",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Organization name slug from `list_organizations`. Example: `acme`."
+          },
+          {
+            "name": "database",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Database name slug from `list_databases`. Example: `app-db`."
+          },
+          {
+            "name": "branch",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Branch name from `list_branches`. Example: `main`."
+          },
+          {
+            "name": "fingerprint",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "The error fingerprint"
+          },
+          {
+            "name": "from",
+            "type": "string",
+            "in": "query",
+            "description": "Start time for filtering queries (ISO 8601 timestamp)"
+          },
+          {
+            "name": "to",
+            "type": "string",
+            "in": "query",
+            "description": "End time for filtering queries (ISO 8601 timestamp)"
+          },
+          {
+            "name": "period",
+            "type": "string",
+            "in": "query",
+            "description": "Time period for filtering queries (e.g., '1h', '24h')"
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "in": "query",
+            "default": 1,
+            "description": "If provided, specifies the page offset of returned results"
+          },
+          {
+            "name": "per_page",
+            "type": "integer",
+            "in": "query",
+            "default": 25,
+            "description": "If provided, specifies the number of returned results"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns queries that failed with the given error fingerprint",
+            "schema": {
+              "$ref": "#/definitions/PaginatedQuery"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_databases`, `read_database`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_databases` |\n| Database | `read_database` |"
+      }
+    },
+    "/organizations/{organization}/databases/{database}/branches/{branch}/insights/queries/{id}": {
+      "get": {
+        "tags": [
+          "api-query_insights"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "get_branch_query",
+        "summary": "Retrieve a branch query",
+        "parameters": [
+          {
+            "name": "organization",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Organization name slug from `list_organizations`. Example: `acme`."
+          },
+          {
+            "name": "database",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Database name slug from `list_databases`. Example: `app-db`."
+          },
+          {
+            "name": "branch",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Branch name from `list_branches`. Example: `main`."
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "The query ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a specific branch query",
+            "schema": {
+              "$ref": "#/definitions/Query"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_databases`, `read_database`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_databases` |\n| Database | `read_database` |"
+      }
+    },
+    "/organizations/{organization}/databases/{database}/branches/{branch}/insights/tags": {
+      "get": {
+        "tags": [
+          "api-query_insights_tags"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "list_branch_query_tags",
+        "summary": "List query tags",
+        "parameters": [
+          {
+            "name": "organization",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Organization name slug from `list_organizations`. Example: `acme`."
+          },
+          {
+            "name": "database",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Database name slug from `list_databases`. Example: `app-db`."
+          },
+          {
+            "name": "branch",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Branch name from `list_branches`. Example: `main`."
+          },
+          {
+            "name": "q",
+            "type": "string",
+            "in": "query",
+            "description": "Search tags by name"
+          },
+          {
+            "name": "from",
+            "type": "string",
+            "in": "query",
+            "description": "Start time for filtering tags (ISO 8601 timestamp)"
+          },
+          {
+            "name": "to",
+            "type": "string",
+            "in": "query",
+            "description": "End time for filtering tags (ISO 8601 timestamp)"
+          },
+          {
+            "name": "period",
+            "type": "string",
+            "in": "query",
+            "description": "Time period for filtering tags (e.g., '1h', '24h')"
+          },
+          {
+            "name": "fingerprint",
+            "type": "string",
+            "in": "query",
+            "description": "Filter to tags on queries with this fingerprint"
+          },
+          {
+            "name": "keyspace",
+            "type": "string",
+            "in": "query",
+            "description": "Filter by keyspace"
+          },
+          {
+            "name": "tablet_type",
+            "type": "string",
+            "enum": [
+              "primary",
+              "replica",
+              "rdonly"
+            ],
+            "in": "query",
+            "description": "Filter by tablet type"
+          },
+          {
+            "name": "values_limit",
+            "type": "integer",
+            "in": "query",
+            "description": "Maximum number of values returned per tag (1-100)"
+          },
+          {
+            "name": "literal_values_only",
+            "type": "boolean",
+            "in": "query",
+            "description": "Only return literal tag values, excluding overflow and collapsed values"
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "in": "query",
+            "default": 1,
+            "description": "If provided, specifies the page offset of returned results"
+          },
+          {
+            "name": "per_page",
+            "type": "integer",
+            "in": "query",
+            "default": 25,
+            "description": "If provided, specifies the number of returned results"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns tags found on branch queries",
+            "schema": {
+              "$ref": "#/definitions/PaginatedQueryTag"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_databases`, `read_database`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_databases` |\n| Database | `read_database` |"
+      }
+    },
+    "/organizations/{organization}/databases/{database}/branches/{branch}/insights/tags/summaries": {
+      "get": {
+        "tags": [
+          "api-query_insights_tags"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "list_branch_query_tag_summaries",
+        "summary": "List query statistics grouped by tag",
+        "parameters": [
+          {
+            "name": "organization",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Organization name slug from `list_organizations`. Example: `acme`."
+          },
+          {
+            "name": "database",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Database name slug from `list_databases`. Example: `app-db`."
+          },
+          {
+            "name": "branch",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Branch name from `list_branches`. Example: `main`."
+          },
+          {
+            "name": "tags",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "in": "query",
+            "description": "Tag names to group query statistics by"
+          },
+          {
+            "name": "q",
+            "type": "string",
+            "in": "query",
+            "description": "Search query statistics by SQL pattern"
+          },
+          {
+            "name": "from",
+            "type": "string",
+            "in": "query",
+            "description": "Start time for filtering query statistics (ISO 8601 timestamp)"
+          },
+          {
+            "name": "to",
+            "type": "string",
+            "in": "query",
+            "description": "End time for filtering query statistics (ISO 8601 timestamp)"
+          },
+          {
+            "name": "period",
+            "type": "string",
+            "in": "query",
+            "description": "Time period for filtering query statistics (e.g., '1h', '24h')"
+          },
+          {
+            "name": "sort",
+            "type": "string",
+            "enum": [
+              "dimensions",
+              "lastRun",
+              "count",
+              "errorCount",
+              "rowsRead",
+              "rowsAffected",
+              "rowsReturned",
+              "rowsReadPerReturned",
+              "rowsReadPerQuery",
+              "rowsReturnedPerQuery",
+              "rowsAffectedPerQuery",
+              "totalTime",
+              "cpuTime",
+              "ioTime",
+              "sumShardQueries",
+              "maxShardQueries",
+              "avgShardQueries",
+              "table",
+              "qualifiedTable",
+              "tableKeyspace",
+              "indexes",
+              "routingIndexes",
+              "p50Latency",
+              "p99Latency",
+              "maxLatency",
+              "percentTime",
+              "percentCpuTime",
+              "percentIoTime",
+              "egressBytes",
+              "egressBytesPerQuery",
+              "maxEgressBytes",
+              "ingressBytes",
+              "ingressBytesPerQuery",
+              "maxIngressBytes",
+              "blocksRead",
+              "blocksHit",
+              "blockCacheHitRatio",
+              "blocksDirtied",
+              "blocksWritten",
+              "trafficControlWarnings",
+              "trafficControlThrottled",
+              "trafficControlChecked",
+              "trafficControlBudgetsUsed"
+            ],
+            "in": "query",
+            "description": "Field to sort by"
+          },
+          {
+            "name": "dir",
+            "type": "string",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "description": "Sort direction"
+          },
+          {
+            "name": "tablet_type",
+            "type": "string",
+            "enum": [
+              "primary",
+              "replica",
+              "rdonly"
+            ],
+            "in": "query",
+            "description": "Filter by tablet type"
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "enum": [
+              "SELECT",
+              "INSERT",
+              "UPDATE",
+              "DELETE"
+            ],
+            "in": "query",
+            "description": "Filter by statement type"
+          },
+          {
+            "name": "fields",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "in": "query",
+            "description": "Specific fields to include in the response"
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "in": "query",
+            "default": 1,
+            "description": "If provided, specifies the page offset of returned results"
+          },
+          {
+            "name": "per_page",
+            "type": "integer",
+            "in": "query",
+            "default": 25,
+            "description": "If provided, specifies the number of returned results"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns query statistics summaries grouped by tag",
+            "schema": {
+              "$ref": "#/definitions/PaginatedDimensionsQuerySummary"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_databases`, `read_database`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_databases` |\n| Database | `read_database` |"
+      }
+    },
+    "/organizations/{organization}/databases/{database}/branches/{branch}/insights/tags/{tag}": {
+      "get": {
+        "tags": [
+          "api-query_insights_tags"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "get_branch_query_tag",
+        "summary": "Retrieve a query tag",
+        "parameters": [
+          {
+            "name": "organization",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Organization name slug from `list_organizations`. Example: `acme`."
+          },
+          {
+            "name": "database",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Database name slug from `list_databases`. Example: `app-db`."
+          },
+          {
+            "name": "branch",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Branch name from `list_branches`. Example: `main`."
+          },
+          {
+            "name": "tag",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "The tag name"
+          },
+          {
+            "name": "from",
+            "type": "string",
+            "in": "query",
+            "description": "Start time for filtering tag values (ISO 8601 timestamp)"
+          },
+          {
+            "name": "to",
+            "type": "string",
+            "in": "query",
+            "description": "End time for filtering tag values (ISO 8601 timestamp)"
+          },
+          {
+            "name": "period",
+            "type": "string",
+            "in": "query",
+            "description": "Time period for filtering tag values (e.g., '1h', '24h')"
+          },
+          {
+            "name": "fingerprint",
+            "type": "string",
+            "in": "query",
+            "description": "Filter to tag values on queries with this fingerprint"
+          },
+          {
+            "name": "keyspace",
+            "type": "string",
+            "in": "query",
+            "description": "Filter by keyspace"
+          },
+          {
+            "name": "tablet_type",
+            "type": "string",
+            "enum": [
+              "primary",
+              "replica",
+              "rdonly"
+            ],
+            "in": "query",
+            "description": "Filter by tablet type"
+          },
+          {
+            "name": "values_limit",
+            "type": "integer",
+            "in": "query",
+            "description": "Maximum number of values returned (1-100)"
+          },
+          {
+            "name": "literal_values_only",
+            "type": "boolean",
+            "in": "query",
+            "description": "Only return literal tag values, excluding overflow and collapsed values"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the tag and its values",
+            "schema": {
+              "$ref": "#/definitions/QueryTag"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_databases`, `read_database`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_databases` |\n| Database | `read_database` |"
+      }
+    },
+    "/organizations/{organization}/databases/{database}/branches/{branch}/insights/{fingerprint}": {
+      "get": {
+        "tags": [
+          "api-query_insights"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "get_query_statistics",
+        "summary": "Retrieve query statistics",
+        "parameters": [
+          {
+            "name": "organization",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Organization name slug from `list_organizations`. Example: `acme`."
+          },
+          {
+            "name": "database",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Database name slug from `list_databases`. Example: `app-db`."
+          },
+          {
+            "name": "branch",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Branch name from `list_branches`. Example: `main`."
+          },
+          {
+            "name": "fingerprint",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "The query fingerprint"
+          },
+          {
+            "name": "keyspace",
+            "type": "string",
+            "in": "query",
+            "description": "The keyspace to filter by"
+          },
+          {
+            "name": "from",
+            "type": "string",
+            "in": "query",
+            "description": "Start time for filtering query statistics (ISO 8601 timestamp)"
+          },
+          {
+            "name": "to",
+            "type": "string",
+            "in": "query",
+            "description": "End time for filtering query statistics (ISO 8601 timestamp)"
+          },
+          {
+            "name": "period",
+            "type": "string",
+            "in": "query",
+            "description": "Time period for filtering query statistics (e.g., '1h', '24h')"
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "in": "query",
+            "default": 1,
+            "description": "If provided, specifies the page offset of returned results"
+          },
+          {
+            "name": "per_page",
+            "type": "integer",
+            "in": "query",
+            "default": 25,
+            "description": "If provided, specifies the number of returned results"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns detailed query statistics",
+            "schema": {
+              "$ref": "#/definitions/PaginatedQuery"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_databases`, `read_database`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_databases` |\n| Database | `read_database` |"
+      }
+    },
+    "/organizations/{organization}/databases/{database}/branches/{branch}/insights/{fingerprint}/summary": {
+      "get": {
+        "tags": [
+          "api-query_insights"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "get_query_summary",
+        "summary": "Retrieve a summary of query statistics",
+        "parameters": [
+          {
+            "name": "organization",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Organization name slug from `list_organizations`. Example: `acme`."
+          },
+          {
+            "name": "database",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Database name slug from `list_databases`. Example: `app-db`."
+          },
+          {
+            "name": "branch",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Branch name from `list_branches`. Example: `main`."
+          },
+          {
+            "name": "fingerprint",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "The query fingerprint"
+          },
+          {
+            "name": "keyspace",
+            "type": "string",
+            "in": "query",
+            "description": "The keyspace to filter by"
+          },
+          {
+            "name": "from",
+            "type": "string",
+            "in": "query",
+            "description": "Start time for filtering query statistics (ISO 8601 timestamp)"
+          },
+          {
+            "name": "to",
+            "type": "string",
+            "in": "query",
+            "description": "End time for filtering query statistics (ISO 8601 timestamp)"
+          },
+          {
+            "name": "period",
+            "type": "string",
+            "in": "query",
+            "description": "Time period for filtering query statistics (e.g., '1h', '24h')"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns aggregated query statistics summary",
+            "schema": {
+              "$ref": "#/definitions/QuerySummary"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_databases`, `read_database`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_databases` |\n| Database | `read_database` |"
+      }
+    },
+    "/organizations/{organization}/databases/{database}/branches/{branch}/insights/{fingerprint}/traffic/budgets": {
+      "get": {
+        "tags": [
+          "api-query_insights_traffic_budgets"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "list_traffic_budgets_for_query",
+        "summary": "List traffic budgets affecting a query fingerprint",
+        "parameters": [
+          {
+            "name": "organization",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Organization name slug from `list_organizations`. Example: `acme`."
+          },
+          {
+            "name": "database",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Database name slug from `list_databases`. Example: `app-db`."
+          },
+          {
+            "name": "branch",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Branch name from `list_branches`. Example: `main`."
+          },
+          {
+            "name": "fingerprint",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "The query fingerprint"
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "in": "query",
+            "default": 1,
+            "description": "If provided, specifies the page offset of returned results"
+          },
+          {
+            "name": "per_page",
+            "type": "integer",
+            "in": "query",
+            "default": 25,
+            "description": "If provided, specifies the number of returned results"
+          },
+          {
+            "name": "keyspace",
+            "type": "string",
+            "in": "query",
+            "description": "Optional keyspace filter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the traffic budgets affecting the query fingerprint",
+            "schema": {
+              "$ref": "#/definitions/PaginatedTrafficBudget"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_branch`, `delete_branch`, `create_branch`, `connect_production_branch`, `connect_branch`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_branches` |\n| Database | `read_branches` |\n| Branch | `read_branch` |"
+      }
+    },
     "/organizations/{organization}/databases/{database}/branches/{branch}/keyspaces": {
       "get": {
         "tags": [
@@ -4561,6 +5910,10 @@
                     ]
                   },
                   "description": "Roles to inherit from"
+                },
+                "with_replication": {
+                  "type": "boolean",
+                  "description": "Whether the role should have the REPLICATION attribute"
                 },
                 "require_where_on_delete": {
                   "type": "string",
@@ -11254,6 +12607,247 @@
     }
   },
   "definitions": {
+    "PaginatedAnomaly": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The response type. Always \"list\" for paginated responses."
+        },
+        "current_page": {
+          "type": "integer",
+          "description": "The current page number"
+        },
+        "next_page": {
+          "type": "integer",
+          "description": "The next page number, or null when this is the last page",
+          "x-nullable": true
+        },
+        "next_page_url": {
+          "type": "string",
+          "description": "The next page of results, or null when this is the last page",
+          "x-nullable": true
+        },
+        "prev_page": {
+          "type": "integer",
+          "description": "The previous page number, or null when this is the first page",
+          "x-nullable": true
+        },
+        "prev_page_url": {
+          "type": "string",
+          "description": "The previous page of results, or null when this is the first page",
+          "x-nullable": true
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The ID of the anomaly"
+              },
+              "period_start": {
+                "type": "string",
+                "description": "When the anomaly started"
+              },
+              "period_end": {
+                "type": "string",
+                "description": "When the anomaly ended"
+              },
+              "minutes_in_violation": {
+                "type": "integer",
+                "description": "The number of minutes query latency was in violation of the expected baseline"
+              },
+              "active": {
+                "type": "boolean",
+                "description": "Whether the anomaly is ongoing"
+              },
+              "duration": {
+                "type": "number",
+                "description": "The duration of the anomaly in seconds"
+              },
+              "metrics_start": {
+                "type": "string",
+                "description": "Start of the metrics window surrounding the anomaly"
+              },
+              "metrics_end": {
+                "type": "string",
+                "description": "End of the metrics window surrounding the anomaly"
+              },
+              "correlations": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The ID of the correlation"
+                    },
+                    "r": {
+                      "type": "number",
+                      "description": "The correlation coefficient between the query and the anomaly"
+                    },
+                    "keyspace": {
+                      "type": "string",
+                      "description": "The keyspace the query ran against"
+                    },
+                    "fingerprint": {
+                      "type": "string",
+                      "description": "The query fingerprint"
+                    },
+                    "normalized_sql": {
+                      "type": "string",
+                      "description": "The normalized SQL statement"
+                    },
+                    "syntax_highlighted_sql": {
+                      "type": "string",
+                      "description": "Syntax highlighted SQL statement"
+                    },
+                    "tablet_type": {
+                      "type": "string",
+                      "enum": [
+                        "primary",
+                        "replica",
+                        "rdonly"
+                      ],
+                      "description": "The tablet type the query ran against"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "r",
+                    "keyspace",
+                    "fingerprint",
+                    "normalized_sql",
+                    "syntax_highlighted_sql",
+                    "tablet_type"
+                  ]
+                },
+                "x-nullable": true
+              }
+            },
+            "required": [
+              "id",
+              "period_start",
+              "period_end",
+              "minutes_in_violation",
+              "active",
+              "duration",
+              "metrics_start",
+              "metrics_end"
+            ]
+          }
+        }
+      },
+      "required": [
+        "type",
+        "current_page",
+        "next_page",
+        "next_page_url",
+        "prev_page",
+        "prev_page_url",
+        "data"
+      ]
+    },
+    "Anomaly": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the anomaly"
+        },
+        "period_start": {
+          "type": "string",
+          "description": "When the anomaly started"
+        },
+        "period_end": {
+          "type": "string",
+          "description": "When the anomaly ended"
+        },
+        "minutes_in_violation": {
+          "type": "integer",
+          "description": "The number of minutes query latency was in violation of the expected baseline"
+        },
+        "active": {
+          "type": "boolean",
+          "description": "Whether the anomaly is ongoing"
+        },
+        "duration": {
+          "type": "number",
+          "description": "The duration of the anomaly in seconds"
+        },
+        "metrics_start": {
+          "type": "string",
+          "description": "Start of the metrics window surrounding the anomaly"
+        },
+        "metrics_end": {
+          "type": "string",
+          "description": "End of the metrics window surrounding the anomaly"
+        },
+        "correlations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The ID of the correlation"
+              },
+              "r": {
+                "type": "number",
+                "description": "The correlation coefficient between the query and the anomaly"
+              },
+              "keyspace": {
+                "type": "string",
+                "description": "The keyspace the query ran against"
+              },
+              "fingerprint": {
+                "type": "string",
+                "description": "The query fingerprint"
+              },
+              "normalized_sql": {
+                "type": "string",
+                "description": "The normalized SQL statement"
+              },
+              "syntax_highlighted_sql": {
+                "type": "string",
+                "description": "Syntax highlighted SQL statement"
+              },
+              "tablet_type": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "replica",
+                  "rdonly"
+                ],
+                "description": "The tablet type the query ran against"
+              }
+            },
+            "required": [
+              "id",
+              "r",
+              "keyspace",
+              "fingerprint",
+              "normalized_sql",
+              "syntax_highlighted_sql",
+              "tablet_type"
+            ]
+          },
+          "x-nullable": true
+        }
+      },
+      "required": [
+        "id",
+        "period_start",
+        "period_end",
+        "minutes_in_violation",
+        "active",
+        "duration",
+        "metrics_start",
+        "metrics_end"
+      ]
+    },
     "PaginatedBackupPolicy": {
       "type": "object",
       "properties": {
@@ -19279,6 +20873,10 @@
                 "type": "array",
                 "description": "Database roles these credentials inherit"
               },
+              "with_replication": {
+                "type": "boolean",
+                "description": "Whether the role has the REPLICATION attribute"
+              },
               "branch": {
                 "type": "object",
                 "properties": {
@@ -19383,6 +20981,7 @@
               "default",
               "ttl",
               "inherited_roles",
+              "with_replication",
               "branch",
               "actor",
               "query_safety_settings"
@@ -19505,6 +21104,10 @@
           "type": "array",
           "description": "Database roles these credentials inherit"
         },
+        "with_replication": {
+          "type": "boolean",
+          "description": "Whether the role has the REPLICATION attribute"
+        },
         "branch": {
           "type": "object",
           "properties": {
@@ -19609,9 +21212,1675 @@
         "default",
         "ttl",
         "inherited_roles",
+        "with_replication",
         "branch",
         "actor",
         "query_safety_settings"
+      ]
+    },
+    "PaginatedQuerySummary": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The response type. Always \"list\" for paginated responses."
+        },
+        "current_page": {
+          "type": "integer",
+          "description": "The current page number"
+        },
+        "next_page": {
+          "type": "integer",
+          "description": "The next page number, or null when this is the last page",
+          "x-nullable": true
+        },
+        "next_page_url": {
+          "type": "string",
+          "description": "The next page of results, or null when this is the last page",
+          "x-nullable": true
+        },
+        "prev_page": {
+          "type": "integer",
+          "description": "The previous page number, or null when this is the first page",
+          "x-nullable": true
+        },
+        "prev_page_url": {
+          "type": "string",
+          "description": "The previous page of results, or null when this is the first page",
+          "x-nullable": true
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The ID of the query summary"
+              },
+              "fingerprint": {
+                "type": "string",
+                "description": "The query fingerprint"
+              },
+              "statement_type": {
+                "type": "string",
+                "description": "The type of SQL statement"
+              },
+              "keyspace": {
+                "type": "string",
+                "description": "The keyspace the query ran against"
+              },
+              "normalized_sql": {
+                "type": "string",
+                "description": "The normalized SQL statement"
+              },
+              "syntax_highlighted_sql": {
+                "type": "string",
+                "description": "Syntax highlighted SQL statement"
+              },
+              "multishard": {
+                "type": "boolean",
+                "description": "Whether the query is a multishard query"
+              },
+              "query_count": {
+                "type": "integer",
+                "description": "The number of times this query was executed"
+              },
+              "error_count": {
+                "type": "integer",
+                "description": "The number of times this query resulted in an error"
+              },
+              "tables": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array",
+                "description": "Tables accessed by the query"
+              },
+              "qualified_tables": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array",
+                "description": "Fully qualified tables accessed by the query"
+              },
+              "table_keyspaces": {
+                "items": {
+                  "type": "object",
+                  "additionalProperties": true
+                },
+                "type": "array",
+                "description": "Mapping of tables to their keyspaces"
+              },
+              "index_usages": {
+                "items": {
+                  "type": "object",
+                  "additionalProperties": true
+                },
+                "type": "array",
+                "description": "Index usage information"
+              },
+              "routing_index_usages": {
+                "items": {
+                  "type": "object",
+                  "additionalProperties": true
+                },
+                "type": "array",
+                "description": "Routing index usage information"
+              },
+              "sum_shard_queries": {
+                "type": "integer",
+                "description": "The total number of shard queries"
+              },
+              "max_shard_queries": {
+                "type": "integer",
+                "description": "The maximum number of shard queries for a single execution"
+              },
+              "avg_shard_queries": {
+                "type": "number",
+                "description": "The average number of shard queries"
+              },
+              "sum_rows_read": {
+                "type": "integer",
+                "description": "The total number of rows read"
+              },
+              "sum_rows_affected": {
+                "type": "integer",
+                "description": "The total number of rows affected"
+              },
+              "sum_rows_returned": {
+                "type": "integer",
+                "description": "The total number of rows returned"
+              },
+              "rows_read_per_returned": {
+                "type": "number",
+                "description": "Average rows read per row returned"
+              },
+              "rows_read_per_query": {
+                "type": "number",
+                "description": "Average rows read per query"
+              },
+              "rows_returned_per_query": {
+                "type": "number",
+                "description": "Average rows returned per query"
+              },
+              "rows_affected_per_query": {
+                "type": "number",
+                "description": "Average rows affected per query"
+              },
+              "sum_total_duration_millis": {
+                "type": "integer",
+                "description": "Total duration in milliseconds across all executions"
+              },
+              "sum_total_duration_percent": {
+                "type": "number",
+                "description": "Percentage of total query time"
+              },
+              "sum_cpu_duration_millis": {
+                "type": "integer",
+                "description": "Total CPU duration in milliseconds"
+              },
+              "sum_cpu_duration_percent": {
+                "type": "number",
+                "description": "Percentage of total CPU time"
+              },
+              "sum_io_duration_millis": {
+                "type": "integer",
+                "description": "Total IO duration in milliseconds"
+              },
+              "sum_io_duration_percent": {
+                "type": "number",
+                "description": "Percentage of total IO time"
+              },
+              "last_run_at": {
+                "type": "string",
+                "description": "When this query was last executed",
+                "x-nullable": true
+              },
+              "time_per_query": {
+                "type": "number",
+                "description": "Average time per query execution"
+              },
+              "p50_latency": {
+                "type": "number",
+                "description": "50th percentile latency"
+              },
+              "p99_latency": {
+                "type": "number",
+                "description": "99th percentile latency"
+              },
+              "max_latency": {
+                "type": "number",
+                "description": "Maximum latency observed"
+              },
+              "egress_bytes": {
+                "type": "integer",
+                "description": "Total egress bytes"
+              },
+              "egress_bytes_per_query": {
+                "type": "number",
+                "description": "Average egress bytes per query"
+              },
+              "max_egress_bytes": {
+                "type": "integer",
+                "description": "Maximum egress bytes for a single execution"
+              },
+              "ingress_bytes": {
+                "type": "integer",
+                "description": "Total ingress bytes"
+              },
+              "ingress_bytes_per_query": {
+                "type": "number",
+                "description": "Average ingress bytes per query"
+              },
+              "max_ingress_bytes": {
+                "type": "integer",
+                "description": "Maximum ingress bytes for a single execution"
+              },
+              "blocks_read": {
+                "type": "integer",
+                "description": "Total blocks read from disk"
+              },
+              "blocks_hit": {
+                "type": "integer",
+                "description": "Total blocks found in cache"
+              },
+              "block_cache_hit_ratio": {
+                "type": "number",
+                "description": "Cache hit ratio for blocks"
+              },
+              "blocks_dirtied": {
+                "type": "integer",
+                "description": "Total blocks dirtied"
+              },
+              "blocks_written": {
+                "type": "integer",
+                "description": "Total blocks written"
+              },
+              "traffic_control_warnings": {
+                "type": "integer",
+                "description": "The number of executions that triggered a traffic control warning"
+              },
+              "traffic_control_throttled": {
+                "type": "integer",
+                "description": "The number of executions throttled by traffic control"
+              },
+              "traffic_control_checked": {
+                "type": "integer",
+                "description": "The number of executions checked by traffic control rules"
+              }
+            },
+            "required": [
+              "id",
+              "fingerprint",
+              "statement_type",
+              "keyspace",
+              "normalized_sql",
+              "syntax_highlighted_sql",
+              "multishard",
+              "query_count",
+              "error_count",
+              "tables",
+              "qualified_tables",
+              "table_keyspaces",
+              "index_usages",
+              "routing_index_usages",
+              "sum_shard_queries",
+              "max_shard_queries",
+              "avg_shard_queries",
+              "sum_rows_read",
+              "sum_rows_affected",
+              "sum_rows_returned",
+              "rows_read_per_returned",
+              "rows_read_per_query",
+              "rows_returned_per_query",
+              "rows_affected_per_query",
+              "sum_total_duration_millis",
+              "sum_total_duration_percent",
+              "sum_cpu_duration_millis",
+              "sum_cpu_duration_percent",
+              "sum_io_duration_millis",
+              "sum_io_duration_percent",
+              "last_run_at",
+              "time_per_query",
+              "p50_latency",
+              "p99_latency",
+              "max_latency",
+              "egress_bytes",
+              "egress_bytes_per_query",
+              "max_egress_bytes",
+              "ingress_bytes",
+              "ingress_bytes_per_query",
+              "max_ingress_bytes",
+              "blocks_read",
+              "blocks_hit",
+              "block_cache_hit_ratio",
+              "blocks_dirtied",
+              "blocks_written",
+              "traffic_control_warnings",
+              "traffic_control_throttled",
+              "traffic_control_checked"
+            ]
+          }
+        }
+      },
+      "required": [
+        "type",
+        "current_page",
+        "next_page",
+        "next_page_url",
+        "prev_page",
+        "prev_page_url",
+        "data"
+      ]
+    },
+    "PaginatedQuery": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The response type. Always \"list\" for paginated responses."
+        },
+        "current_page": {
+          "type": "integer",
+          "description": "The current page number"
+        },
+        "next_page": {
+          "type": "integer",
+          "description": "The next page number, or null when this is the last page",
+          "x-nullable": true
+        },
+        "next_page_url": {
+          "type": "string",
+          "description": "The next page of results, or null when this is the last page",
+          "x-nullable": true
+        },
+        "prev_page": {
+          "type": "integer",
+          "description": "The previous page number, or null when this is the first page",
+          "x-nullable": true
+        },
+        "prev_page_url": {
+          "type": "string",
+          "description": "The previous page of results, or null when this is the first page",
+          "x-nullable": true
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The ID of the query"
+              },
+              "password": {
+                "type": "object",
+                "additionalProperties": true,
+                "description": "The database password used for the query"
+              },
+              "tags": {
+                "items": {
+                  "type": "object",
+                  "additionalProperties": true
+                },
+                "type": "array",
+                "description": "Tags associated with the query"
+              },
+              "fingerprint": {
+                "type": "string",
+                "description": "The query fingerprint"
+              },
+              "started_at": {
+                "type": "string",
+                "description": "When the query started",
+                "x-nullable": true
+              },
+              "statement_type": {
+                "type": "string",
+                "description": "The type of SQL statement"
+              },
+              "keyspace": {
+                "type": "string",
+                "description": "The keyspace the query ran against"
+              },
+              "tables": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array",
+                "description": "Tables accessed by the query"
+              },
+              "username": {
+                "type": "string",
+                "description": "The username that executed the query"
+              },
+              "remote_address": {
+                "type": "string",
+                "description": "The remote IP address of the client"
+              },
+              "shard_queries": {
+                "type": "integer",
+                "description": "The number of shard queries executed"
+              },
+              "rows_read": {
+                "type": "integer",
+                "description": "The number of rows read"
+              },
+              "rows_affected": {
+                "type": "integer",
+                "description": "The number of rows affected"
+              },
+              "rows_returned": {
+                "type": "integer",
+                "description": "The number of rows returned"
+              },
+              "total_duration_millis": {
+                "type": "integer",
+                "description": "Total query duration in milliseconds"
+              },
+              "error_message": {
+                "type": "string",
+                "description": "Error message if the query failed"
+              },
+              "normalized_sql": {
+                "type": "string",
+                "description": "The normalized SQL statement"
+              },
+              "syntax_highlighted_sql": {
+                "type": "string",
+                "description": "Syntax highlighted SQL statement"
+              },
+              "created_at": {
+                "type": "string",
+                "description": "When the query record was created"
+              },
+              "updated_at": {
+                "type": "string",
+                "description": "When the query record was last updated"
+              },
+              "explainable": {
+                "type": "boolean",
+                "description": "Whether the query can be explained"
+              },
+              "truncated": {
+                "type": "boolean",
+                "description": "Whether the query was truncated"
+              }
+            },
+            "required": [
+              "id",
+              "password",
+              "tags",
+              "fingerprint",
+              "started_at",
+              "statement_type",
+              "keyspace",
+              "tables",
+              "username",
+              "remote_address",
+              "shard_queries",
+              "rows_read",
+              "rows_affected",
+              "rows_returned",
+              "total_duration_millis",
+              "error_message",
+              "normalized_sql",
+              "syntax_highlighted_sql",
+              "created_at",
+              "updated_at",
+              "explainable",
+              "truncated"
+            ]
+          }
+        }
+      },
+      "required": [
+        "type",
+        "current_page",
+        "next_page",
+        "next_page_url",
+        "prev_page",
+        "prev_page_url",
+        "data"
+      ]
+    },
+    "QuerySummary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the query summary"
+        },
+        "fingerprint": {
+          "type": "string",
+          "description": "The query fingerprint"
+        },
+        "statement_type": {
+          "type": "string",
+          "description": "The type of SQL statement"
+        },
+        "keyspace": {
+          "type": "string",
+          "description": "The keyspace the query ran against"
+        },
+        "normalized_sql": {
+          "type": "string",
+          "description": "The normalized SQL statement"
+        },
+        "syntax_highlighted_sql": {
+          "type": "string",
+          "description": "Syntax highlighted SQL statement"
+        },
+        "multishard": {
+          "type": "boolean",
+          "description": "Whether the query is a multishard query"
+        },
+        "query_count": {
+          "type": "integer",
+          "description": "The number of times this query was executed"
+        },
+        "error_count": {
+          "type": "integer",
+          "description": "The number of times this query resulted in an error"
+        },
+        "tables": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Tables accessed by the query"
+        },
+        "qualified_tables": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Fully qualified tables accessed by the query"
+        },
+        "table_keyspaces": {
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "type": "array",
+          "description": "Mapping of tables to their keyspaces"
+        },
+        "index_usages": {
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "type": "array",
+          "description": "Index usage information"
+        },
+        "routing_index_usages": {
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "type": "array",
+          "description": "Routing index usage information"
+        },
+        "sum_shard_queries": {
+          "type": "integer",
+          "description": "The total number of shard queries"
+        },
+        "max_shard_queries": {
+          "type": "integer",
+          "description": "The maximum number of shard queries for a single execution"
+        },
+        "avg_shard_queries": {
+          "type": "number",
+          "description": "The average number of shard queries"
+        },
+        "sum_rows_read": {
+          "type": "integer",
+          "description": "The total number of rows read"
+        },
+        "sum_rows_affected": {
+          "type": "integer",
+          "description": "The total number of rows affected"
+        },
+        "sum_rows_returned": {
+          "type": "integer",
+          "description": "The total number of rows returned"
+        },
+        "rows_read_per_returned": {
+          "type": "number",
+          "description": "Average rows read per row returned"
+        },
+        "rows_read_per_query": {
+          "type": "number",
+          "description": "Average rows read per query"
+        },
+        "rows_returned_per_query": {
+          "type": "number",
+          "description": "Average rows returned per query"
+        },
+        "rows_affected_per_query": {
+          "type": "number",
+          "description": "Average rows affected per query"
+        },
+        "sum_total_duration_millis": {
+          "type": "integer",
+          "description": "Total duration in milliseconds across all executions"
+        },
+        "sum_total_duration_percent": {
+          "type": "number",
+          "description": "Percentage of total query time"
+        },
+        "sum_cpu_duration_millis": {
+          "type": "integer",
+          "description": "Total CPU duration in milliseconds"
+        },
+        "sum_cpu_duration_percent": {
+          "type": "number",
+          "description": "Percentage of total CPU time"
+        },
+        "sum_io_duration_millis": {
+          "type": "integer",
+          "description": "Total IO duration in milliseconds"
+        },
+        "sum_io_duration_percent": {
+          "type": "number",
+          "description": "Percentage of total IO time"
+        },
+        "last_run_at": {
+          "type": "string",
+          "description": "When this query was last executed",
+          "x-nullable": true
+        },
+        "time_per_query": {
+          "type": "number",
+          "description": "Average time per query execution"
+        },
+        "p50_latency": {
+          "type": "number",
+          "description": "50th percentile latency"
+        },
+        "p99_latency": {
+          "type": "number",
+          "description": "99th percentile latency"
+        },
+        "max_latency": {
+          "type": "number",
+          "description": "Maximum latency observed"
+        },
+        "egress_bytes": {
+          "type": "integer",
+          "description": "Total egress bytes"
+        },
+        "egress_bytes_per_query": {
+          "type": "number",
+          "description": "Average egress bytes per query"
+        },
+        "max_egress_bytes": {
+          "type": "integer",
+          "description": "Maximum egress bytes for a single execution"
+        },
+        "ingress_bytes": {
+          "type": "integer",
+          "description": "Total ingress bytes"
+        },
+        "ingress_bytes_per_query": {
+          "type": "number",
+          "description": "Average ingress bytes per query"
+        },
+        "max_ingress_bytes": {
+          "type": "integer",
+          "description": "Maximum ingress bytes for a single execution"
+        },
+        "blocks_read": {
+          "type": "integer",
+          "description": "Total blocks read from disk"
+        },
+        "blocks_hit": {
+          "type": "integer",
+          "description": "Total blocks found in cache"
+        },
+        "block_cache_hit_ratio": {
+          "type": "number",
+          "description": "Cache hit ratio for blocks"
+        },
+        "blocks_dirtied": {
+          "type": "integer",
+          "description": "Total blocks dirtied"
+        },
+        "blocks_written": {
+          "type": "integer",
+          "description": "Total blocks written"
+        },
+        "traffic_control_warnings": {
+          "type": "integer",
+          "description": "The number of executions that triggered a traffic control warning"
+        },
+        "traffic_control_throttled": {
+          "type": "integer",
+          "description": "The number of executions throttled by traffic control"
+        },
+        "traffic_control_checked": {
+          "type": "integer",
+          "description": "The number of executions checked by traffic control rules"
+        }
+      },
+      "required": [
+        "id",
+        "fingerprint",
+        "statement_type",
+        "keyspace",
+        "normalized_sql",
+        "syntax_highlighted_sql",
+        "multishard",
+        "query_count",
+        "error_count",
+        "tables",
+        "qualified_tables",
+        "table_keyspaces",
+        "index_usages",
+        "routing_index_usages",
+        "sum_shard_queries",
+        "max_shard_queries",
+        "avg_shard_queries",
+        "sum_rows_read",
+        "sum_rows_affected",
+        "sum_rows_returned",
+        "rows_read_per_returned",
+        "rows_read_per_query",
+        "rows_returned_per_query",
+        "rows_affected_per_query",
+        "sum_total_duration_millis",
+        "sum_total_duration_percent",
+        "sum_cpu_duration_millis",
+        "sum_cpu_duration_percent",
+        "sum_io_duration_millis",
+        "sum_io_duration_percent",
+        "last_run_at",
+        "time_per_query",
+        "p50_latency",
+        "p99_latency",
+        "max_latency",
+        "egress_bytes",
+        "egress_bytes_per_query",
+        "max_egress_bytes",
+        "ingress_bytes",
+        "ingress_bytes_per_query",
+        "max_ingress_bytes",
+        "blocks_read",
+        "blocks_hit",
+        "block_cache_hit_ratio",
+        "blocks_dirtied",
+        "blocks_written",
+        "traffic_control_warnings",
+        "traffic_control_throttled",
+        "traffic_control_checked"
+      ]
+    },
+    "Query": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the query"
+        },
+        "password": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "The database password used for the query"
+        },
+        "tags": {
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "type": "array",
+          "description": "Tags associated with the query"
+        },
+        "fingerprint": {
+          "type": "string",
+          "description": "The query fingerprint"
+        },
+        "started_at": {
+          "type": "string",
+          "description": "When the query started",
+          "x-nullable": true
+        },
+        "statement_type": {
+          "type": "string",
+          "description": "The type of SQL statement"
+        },
+        "keyspace": {
+          "type": "string",
+          "description": "The keyspace the query ran against"
+        },
+        "tables": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "description": "Tables accessed by the query"
+        },
+        "username": {
+          "type": "string",
+          "description": "The username that executed the query"
+        },
+        "remote_address": {
+          "type": "string",
+          "description": "The remote IP address of the client"
+        },
+        "shard_queries": {
+          "type": "integer",
+          "description": "The number of shard queries executed"
+        },
+        "rows_read": {
+          "type": "integer",
+          "description": "The number of rows read"
+        },
+        "rows_affected": {
+          "type": "integer",
+          "description": "The number of rows affected"
+        },
+        "rows_returned": {
+          "type": "integer",
+          "description": "The number of rows returned"
+        },
+        "total_duration_millis": {
+          "type": "integer",
+          "description": "Total query duration in milliseconds"
+        },
+        "error_message": {
+          "type": "string",
+          "description": "Error message if the query failed"
+        },
+        "normalized_sql": {
+          "type": "string",
+          "description": "The normalized SQL statement"
+        },
+        "syntax_highlighted_sql": {
+          "type": "string",
+          "description": "Syntax highlighted SQL statement"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "When the query record was created"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "When the query record was last updated"
+        },
+        "explainable": {
+          "type": "boolean",
+          "description": "Whether the query can be explained"
+        },
+        "truncated": {
+          "type": "boolean",
+          "description": "Whether the query was truncated"
+        }
+      },
+      "required": [
+        "id",
+        "password",
+        "tags",
+        "fingerprint",
+        "started_at",
+        "statement_type",
+        "keyspace",
+        "tables",
+        "username",
+        "remote_address",
+        "shard_queries",
+        "rows_read",
+        "rows_affected",
+        "rows_returned",
+        "total_duration_millis",
+        "error_message",
+        "normalized_sql",
+        "syntax_highlighted_sql",
+        "created_at",
+        "updated_at",
+        "explainable",
+        "truncated"
+      ]
+    },
+    "PaginatedErrorSummary": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The response type. Always \"list\" for paginated responses."
+        },
+        "current_page": {
+          "type": "integer",
+          "description": "The current page number"
+        },
+        "next_page": {
+          "type": "integer",
+          "description": "The next page number, or null when this is the last page",
+          "x-nullable": true
+        },
+        "next_page_url": {
+          "type": "string",
+          "description": "The next page of results, or null when this is the last page",
+          "x-nullable": true
+        },
+        "prev_page": {
+          "type": "integer",
+          "description": "The previous page number, or null when this is the first page",
+          "x-nullable": true
+        },
+        "prev_page_url": {
+          "type": "string",
+          "description": "The previous page of results, or null when this is the first page",
+          "x-nullable": true
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The ID of the error summary"
+              },
+              "error_fingerprint": {
+                "type": "string",
+                "description": "The error fingerprint"
+              },
+              "started_at": {
+                "type": "string",
+                "description": "When the error last occurred"
+              },
+              "total_duration_millis": {
+                "type": "integer",
+                "description": "Total duration in milliseconds across all failed executions"
+              },
+              "time_per_query": {
+                "type": "number",
+                "description": "Average duration per failed execution in milliseconds"
+              },
+              "error_count": {
+                "type": "integer",
+                "description": "The number of times the error occurred"
+              },
+              "error_message": {
+                "type": "string",
+                "description": "The error message"
+              }
+            },
+            "required": [
+              "id",
+              "error_fingerprint",
+              "started_at",
+              "total_duration_millis",
+              "time_per_query",
+              "error_count",
+              "error_message"
+            ]
+          }
+        }
+      },
+      "required": [
+        "type",
+        "current_page",
+        "next_page",
+        "next_page_url",
+        "prev_page",
+        "prev_page_url",
+        "data"
+      ]
+    },
+    "PaginatedQueryTag": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The response type. Always \"list\" for paginated responses."
+        },
+        "current_page": {
+          "type": "integer",
+          "description": "The current page number"
+        },
+        "next_page": {
+          "type": "integer",
+          "description": "The next page number, or null when this is the last page",
+          "x-nullable": true
+        },
+        "next_page_url": {
+          "type": "string",
+          "description": "The next page of results, or null when this is the last page",
+          "x-nullable": true
+        },
+        "prev_page": {
+          "type": "integer",
+          "description": "The previous page number, or null when this is the first page",
+          "x-nullable": true
+        },
+        "prev_page_url": {
+          "type": "string",
+          "description": "The previous page of results, or null when this is the first page",
+          "x-nullable": true
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The ID of the tag"
+              },
+              "name": {
+                "type": "string",
+                "description": "The name of the tag"
+              },
+              "source": {
+                "type": "string",
+                "enum": [
+                  "sql",
+                  "system"
+                ],
+                "description": "The source of the tag"
+              },
+              "query_count": {
+                "type": "integer",
+                "description": "The number of queries that have this tag"
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "The name of the tag value"
+                    },
+                    "query_count": {
+                      "type": "integer",
+                      "description": "The number of queries that have this tag value"
+                    },
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "literal",
+                        "overflow",
+                        "collapsed"
+                      ],
+                      "description": "The kind of tag value"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "query_count",
+                    "kind"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "source",
+              "query_count",
+              "values"
+            ]
+          }
+        }
+      },
+      "required": [
+        "type",
+        "current_page",
+        "next_page",
+        "next_page_url",
+        "prev_page",
+        "prev_page_url",
+        "data"
+      ]
+    },
+    "PaginatedDimensionsQuerySummary": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The response type. Always \"list\" for paginated responses."
+        },
+        "current_page": {
+          "type": "integer",
+          "description": "The current page number"
+        },
+        "next_page": {
+          "type": "integer",
+          "description": "The next page number, or null when this is the last page",
+          "x-nullable": true
+        },
+        "next_page_url": {
+          "type": "string",
+          "description": "The next page of results, or null when this is the last page",
+          "x-nullable": true
+        },
+        "prev_page": {
+          "type": "integer",
+          "description": "The previous page number, or null when this is the first page",
+          "x-nullable": true
+        },
+        "prev_page_url": {
+          "type": "string",
+          "description": "The previous page of results, or null when this is the first page",
+          "x-nullable": true
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "dimensions": {
+                "type": "object",
+                "additionalProperties": true,
+                "description": "The tag names and values this summary is grouped by"
+              },
+              "query_count": {
+                "type": "integer",
+                "description": "The number of times this query was executed"
+              },
+              "error_count": {
+                "type": "integer",
+                "description": "The number of times this query resulted in an error"
+              },
+              "tables": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array",
+                "description": "Tables accessed by the query"
+              },
+              "qualified_tables": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array",
+                "description": "Fully qualified tables accessed by the query"
+              },
+              "table_keyspaces": {
+                "items": {
+                  "type": "object",
+                  "additionalProperties": true
+                },
+                "type": "array",
+                "description": "Mapping of tables to their keyspaces"
+              },
+              "index_usages": {
+                "items": {
+                  "type": "object",
+                  "additionalProperties": true
+                },
+                "type": "array",
+                "description": "Index usage information"
+              },
+              "routing_index_usages": {
+                "items": {
+                  "type": "object",
+                  "additionalProperties": true
+                },
+                "type": "array",
+                "description": "Routing index usage information"
+              },
+              "sum_shard_queries": {
+                "type": "integer",
+                "description": "The total number of shard queries"
+              },
+              "max_shard_queries": {
+                "type": "integer",
+                "description": "The maximum number of shard queries for a single execution"
+              },
+              "avg_shard_queries": {
+                "type": "number",
+                "description": "The average number of shard queries"
+              },
+              "sum_rows_read": {
+                "type": "integer",
+                "description": "The total number of rows read"
+              },
+              "sum_rows_affected": {
+                "type": "integer",
+                "description": "The total number of rows affected"
+              },
+              "sum_rows_returned": {
+                "type": "integer",
+                "description": "The total number of rows returned"
+              },
+              "rows_read_per_returned": {
+                "type": "number",
+                "description": "Average rows read per row returned"
+              },
+              "rows_read_per_query": {
+                "type": "number",
+                "description": "Average rows read per query"
+              },
+              "rows_returned_per_query": {
+                "type": "number",
+                "description": "Average rows returned per query"
+              },
+              "rows_affected_per_query": {
+                "type": "number",
+                "description": "Average rows affected per query"
+              },
+              "sum_total_duration_millis": {
+                "type": "integer",
+                "description": "Total duration in milliseconds across all executions"
+              },
+              "sum_total_duration_percent": {
+                "type": "number",
+                "description": "Percentage of total query time"
+              },
+              "sum_cpu_duration_millis": {
+                "type": "integer",
+                "description": "Total CPU duration in milliseconds"
+              },
+              "sum_cpu_duration_percent": {
+                "type": "number",
+                "description": "Percentage of total CPU time"
+              },
+              "sum_io_duration_millis": {
+                "type": "integer",
+                "description": "Total IO duration in milliseconds"
+              },
+              "sum_io_duration_percent": {
+                "type": "number",
+                "description": "Percentage of total IO time"
+              },
+              "last_run_at": {
+                "type": "string",
+                "description": "When this query was last executed",
+                "x-nullable": true
+              },
+              "time_per_query": {
+                "type": "number",
+                "description": "Average time per query execution"
+              },
+              "p50_latency": {
+                "type": "number",
+                "description": "50th percentile latency"
+              },
+              "p99_latency": {
+                "type": "number",
+                "description": "99th percentile latency"
+              },
+              "max_latency": {
+                "type": "number",
+                "description": "Maximum latency observed"
+              },
+              "egress_bytes": {
+                "type": "integer",
+                "description": "Total egress bytes"
+              },
+              "egress_bytes_per_query": {
+                "type": "number",
+                "description": "Average egress bytes per query"
+              },
+              "max_egress_bytes": {
+                "type": "integer",
+                "description": "Maximum egress bytes for a single execution"
+              },
+              "ingress_bytes": {
+                "type": "integer",
+                "description": "Total ingress bytes"
+              },
+              "ingress_bytes_per_query": {
+                "type": "number",
+                "description": "Average ingress bytes per query"
+              },
+              "max_ingress_bytes": {
+                "type": "integer",
+                "description": "Maximum ingress bytes for a single execution"
+              },
+              "blocks_read": {
+                "type": "integer",
+                "description": "Total blocks read from disk"
+              },
+              "blocks_hit": {
+                "type": "integer",
+                "description": "Total blocks found in cache"
+              },
+              "block_cache_hit_ratio": {
+                "type": "number",
+                "description": "Cache hit ratio for blocks"
+              },
+              "blocks_dirtied": {
+                "type": "integer",
+                "description": "Total blocks dirtied"
+              },
+              "blocks_written": {
+                "type": "integer",
+                "description": "Total blocks written"
+              },
+              "traffic_control_warnings": {
+                "type": "integer",
+                "description": "The number of executions that triggered a traffic control warning"
+              },
+              "traffic_control_throttled": {
+                "type": "integer",
+                "description": "The number of executions throttled by traffic control"
+              },
+              "traffic_control_checked": {
+                "type": "integer",
+                "description": "The number of executions checked by traffic control rules"
+              }
+            },
+            "required": [
+              "dimensions",
+              "query_count",
+              "error_count",
+              "tables",
+              "qualified_tables",
+              "table_keyspaces",
+              "index_usages",
+              "routing_index_usages",
+              "sum_shard_queries",
+              "max_shard_queries",
+              "avg_shard_queries",
+              "sum_rows_read",
+              "sum_rows_affected",
+              "sum_rows_returned",
+              "rows_read_per_returned",
+              "rows_read_per_query",
+              "rows_returned_per_query",
+              "rows_affected_per_query",
+              "sum_total_duration_millis",
+              "sum_total_duration_percent",
+              "sum_cpu_duration_millis",
+              "sum_cpu_duration_percent",
+              "sum_io_duration_millis",
+              "sum_io_duration_percent",
+              "last_run_at",
+              "time_per_query",
+              "p50_latency",
+              "p99_latency",
+              "max_latency",
+              "egress_bytes",
+              "egress_bytes_per_query",
+              "max_egress_bytes",
+              "ingress_bytes",
+              "ingress_bytes_per_query",
+              "max_ingress_bytes",
+              "blocks_read",
+              "blocks_hit",
+              "block_cache_hit_ratio",
+              "blocks_dirtied",
+              "blocks_written",
+              "traffic_control_warnings",
+              "traffic_control_throttled",
+              "traffic_control_checked"
+            ]
+          }
+        }
+      },
+      "required": [
+        "type",
+        "current_page",
+        "next_page",
+        "next_page_url",
+        "prev_page",
+        "prev_page_url",
+        "data"
+      ]
+    },
+    "QueryTag": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the tag"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the tag"
+        },
+        "source": {
+          "type": "string",
+          "enum": [
+            "sql",
+            "system"
+          ],
+          "description": "The source of the tag"
+        },
+        "query_count": {
+          "type": "integer",
+          "description": "The number of queries that have this tag"
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the tag value"
+              },
+              "query_count": {
+                "type": "integer",
+                "description": "The number of queries that have this tag value"
+              },
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "literal",
+                  "overflow",
+                  "collapsed"
+                ],
+                "description": "The kind of tag value"
+              }
+            },
+            "required": [
+              "name",
+              "query_count",
+              "kind"
+            ]
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "source",
+        "query_count",
+        "values"
+      ]
+    },
+    "PaginatedTrafficBudget": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The response type. Always \"list\" for paginated responses."
+        },
+        "current_page": {
+          "type": "integer",
+          "description": "The current page number"
+        },
+        "next_page": {
+          "type": "integer",
+          "description": "The next page number, or null when this is the last page",
+          "x-nullable": true
+        },
+        "next_page_url": {
+          "type": "string",
+          "description": "The next page of results, or null when this is the last page",
+          "x-nullable": true
+        },
+        "prev_page": {
+          "type": "integer",
+          "description": "The previous page number, or null when this is the first page",
+          "x-nullable": true
+        },
+        "prev_page_url": {
+          "type": "string",
+          "description": "The previous page of results, or null when this is the first page",
+          "x-nullable": true
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The ID of the traffic budget"
+              },
+              "name": {
+                "type": "string",
+                "description": "The name of the budget"
+              },
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "enforce",
+                  "warn",
+                  "off"
+                ],
+                "description": "The mode of the budget"
+              },
+              "capacity": {
+                "type": "number",
+                "description": "The maximum capacity that can be banked, measured as a percentage of seconds of full server usage (0-6000). Unlimited when not set.",
+                "x-nullable": true
+              },
+              "rate": {
+                "type": "number",
+                "description": "The rate at which capacity refills, as a percentage of server resources (0-100). Unlimited when not set.",
+                "x-nullable": true
+              },
+              "burst": {
+                "type": "number",
+                "description": "The maximum capacity a single query can consume, measured as a percentage of seconds of full server usage (0-6000). Unlimited when not set.",
+                "x-nullable": true
+              },
+              "concurrency": {
+                "type": "number",
+                "description": "The percentage of available worker processes this policy can use (0-100). Unlimited when not set.",
+                "x-nullable": true
+              },
+              "warning_threshold": {
+                "type": "number",
+                "description": "A percentage of capacity, burst, or concurrency thresholds to emit warnings for enforced budgets (0-100).",
+                "x-nullable": true
+              },
+              "actor": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "The ID of the actor"
+                  },
+                  "display_name": {
+                    "type": "string",
+                    "description": "The name of the actor"
+                  },
+                  "avatar_url": {
+                    "type": "string",
+                    "description": "The URL of the actor's avatar"
+                  }
+                },
+                "required": [
+                  "id",
+                  "display_name",
+                  "avatar_url"
+                ]
+              },
+              "rules": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The ID of the traffic rule"
+                    },
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "match",
+                        "each"
+                      ],
+                      "description": "The kind of rule"
+                    },
+                    "tags": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "key_id": {
+                            "type": "string",
+                            "description": "The ID of the key for this tag"
+                          },
+                          "key": {
+                            "type": "string",
+                            "description": "The key for this tag"
+                          },
+                          "value": {
+                            "type": "string",
+                            "description": "The value for this tag"
+                          },
+                          "source": {
+                            "type": "string",
+                            "enum": [
+                              "sql",
+                              "system"
+                            ],
+                            "description": "The source of this tag"
+                          }
+                        },
+                        "required": [
+                          "key_id",
+                          "key",
+                          "value",
+                          "source"
+                        ]
+                      }
+                    },
+                    "fingerprint": {
+                      "type": "string",
+                      "description": "The query fingerprint targeted by this rule",
+                      "x-nullable": true
+                    },
+                    "keyspace": {
+                      "type": "string",
+                      "description": "The keyspace of the fingerprint",
+                      "x-nullable": true
+                    },
+                    "actor": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "The ID of the actor"
+                        },
+                        "display_name": {
+                          "type": "string",
+                          "description": "The name of the actor"
+                        },
+                        "avatar_url": {
+                          "type": "string",
+                          "description": "The URL of the actor's avatar"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "display_name",
+                        "avatar_url"
+                      ]
+                    },
+                    "syntax_highlighted_sql": {
+                      "type": "string",
+                      "description": "Syntax highlighted SQL for rules with SQL keys"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "description": "When the rule was created"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "description": "When the rule was updated"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "kind",
+                    "tags",
+                    "actor",
+                    "syntax_highlighted_sql",
+                    "created_at",
+                    "updated_at"
+                  ]
+                }
+              },
+              "created_at": {
+                "type": "string",
+                "description": "When the budget was created"
+              },
+              "updated_at": {
+                "type": "string",
+                "description": "When the budget was updated"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "mode",
+              "actor",
+              "rules",
+              "created_at",
+              "updated_at"
+            ]
+          }
+        }
+      },
+      "required": [
+        "type",
+        "current_page",
+        "next_page",
+        "next_page_url",
+        "prev_page",
+        "prev_page_url",
+        "data"
       ]
     },
     "PaginatedQueryPatternsDownload": {
@@ -20195,244 +23464,6 @@
         "dismissed_at",
         "closed_by_deploy_request",
         "dismissed_by"
-      ]
-    },
-    "PaginatedTrafficBudget": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "type": "string",
-          "description": "The response type. Always \"list\" for paginated responses."
-        },
-        "current_page": {
-          "type": "integer",
-          "description": "The current page number"
-        },
-        "next_page": {
-          "type": "integer",
-          "description": "The next page number, or null when this is the last page",
-          "x-nullable": true
-        },
-        "next_page_url": {
-          "type": "string",
-          "description": "The next page of results, or null when this is the last page",
-          "x-nullable": true
-        },
-        "prev_page": {
-          "type": "integer",
-          "description": "The previous page number, or null when this is the first page",
-          "x-nullable": true
-        },
-        "prev_page_url": {
-          "type": "string",
-          "description": "The previous page of results, or null when this is the first page",
-          "x-nullable": true
-        },
-        "data": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "string",
-                "description": "The ID of the traffic budget"
-              },
-              "name": {
-                "type": "string",
-                "description": "The name of the budget"
-              },
-              "mode": {
-                "type": "string",
-                "enum": [
-                  "enforce",
-                  "warn",
-                  "off"
-                ],
-                "description": "The mode of the budget"
-              },
-              "capacity": {
-                "type": "number",
-                "description": "The maximum capacity that can be banked, measured as a percentage of seconds of full server usage (0-6000). Unlimited when not set.",
-                "x-nullable": true
-              },
-              "rate": {
-                "type": "number",
-                "description": "The rate at which capacity refills, as a percentage of server resources (0-100). Unlimited when not set.",
-                "x-nullable": true
-              },
-              "burst": {
-                "type": "number",
-                "description": "The maximum capacity a single query can consume, measured as a percentage of seconds of full server usage (0-6000). Unlimited when not set.",
-                "x-nullable": true
-              },
-              "concurrency": {
-                "type": "number",
-                "description": "The percentage of available worker processes this policy can use (0-100). Unlimited when not set.",
-                "x-nullable": true
-              },
-              "warning_threshold": {
-                "type": "number",
-                "description": "A percentage of capacity, burst, or concurrency thresholds to emit warnings for enforced budgets (0-100).",
-                "x-nullable": true
-              },
-              "actor": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "string",
-                    "description": "The ID of the actor"
-                  },
-                  "display_name": {
-                    "type": "string",
-                    "description": "The name of the actor"
-                  },
-                  "avatar_url": {
-                    "type": "string",
-                    "description": "The URL of the actor's avatar"
-                  }
-                },
-                "required": [
-                  "id",
-                  "display_name",
-                  "avatar_url"
-                ]
-              },
-              "rules": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "description": "The ID of the traffic rule"
-                    },
-                    "kind": {
-                      "type": "string",
-                      "enum": [
-                        "match",
-                        "each"
-                      ],
-                      "description": "The kind of rule"
-                    },
-                    "tags": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "key_id": {
-                            "type": "string",
-                            "description": "The ID of the key for this tag"
-                          },
-                          "key": {
-                            "type": "string",
-                            "description": "The key for this tag"
-                          },
-                          "value": {
-                            "type": "string",
-                            "description": "The value for this tag"
-                          },
-                          "source": {
-                            "type": "string",
-                            "enum": [
-                              "sql",
-                              "system"
-                            ],
-                            "description": "The source of this tag"
-                          }
-                        },
-                        "required": [
-                          "key_id",
-                          "key",
-                          "value",
-                          "source"
-                        ]
-                      }
-                    },
-                    "fingerprint": {
-                      "type": "string",
-                      "description": "The query fingerprint targeted by this rule",
-                      "x-nullable": true
-                    },
-                    "keyspace": {
-                      "type": "string",
-                      "description": "The keyspace of the fingerprint",
-                      "x-nullable": true
-                    },
-                    "actor": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "string",
-                          "description": "The ID of the actor"
-                        },
-                        "display_name": {
-                          "type": "string",
-                          "description": "The name of the actor"
-                        },
-                        "avatar_url": {
-                          "type": "string",
-                          "description": "The URL of the actor's avatar"
-                        }
-                      },
-                      "required": [
-                        "id",
-                        "display_name",
-                        "avatar_url"
-                      ]
-                    },
-                    "syntax_highlighted_sql": {
-                      "type": "string",
-                      "description": "Syntax highlighted SQL for rules with SQL keys"
-                    },
-                    "created_at": {
-                      "type": "string",
-                      "description": "When the rule was created"
-                    },
-                    "updated_at": {
-                      "type": "string",
-                      "description": "When the rule was updated"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "kind",
-                    "tags",
-                    "actor",
-                    "syntax_highlighted_sql",
-                    "created_at",
-                    "updated_at"
-                  ]
-                }
-              },
-              "created_at": {
-                "type": "string",
-                "description": "When the budget was created"
-              },
-              "updated_at": {
-                "type": "string",
-                "description": "When the budget was updated"
-              }
-            },
-            "required": [
-              "id",
-              "name",
-              "mode",
-              "actor",
-              "rules",
-              "created_at",
-              "updated_at"
-            ]
-          }
-        }
-      },
-      "required": [
-        "type",
-        "current_page",
-        "next_page",
-        "next_page_url",
-        "prev_page",
-        "prev_page_url",
-        "data"
       ]
     },
     "TrafficBudget": {
