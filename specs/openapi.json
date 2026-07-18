@@ -6045,7 +6045,26 @@
           "200": {
             "description": "Returns the new credentials",
             "schema": {
-              "$ref": "#/definitions/PostgresRole"
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "description": "The database user name"
+                },
+                "password": {
+                  "type": "string",
+                  "description": "The plaintext password"
+                },
+                "access_host_url": {
+                  "type": "string",
+                  "description": "The database connection host"
+                }
+              },
+              "required": [
+                "username",
+                "password",
+                "access_host_url"
+              ]
             },
             "headers": {}
           },
@@ -20206,6 +20225,15 @@
                   "sort_order"
                 ]
               },
+              "bouncer_size": {
+                "type": "string",
+                "description": "The size of the bouncer as a SKU name (e.g., 'PGB_5')"
+              },
+              "parameter_overrides": {
+                "type": "object",
+                "additionalProperties": true,
+                "description": "Bouncer configuration parameters that have been changed from their default values, nested by namespace (e.g., {\"pgbouncer\": {\"default_pool_size\": \"100\"}})"
+              },
               "target": {
                 "type": "string",
                 "enum": [
@@ -20433,6 +20461,8 @@
               "id",
               "name",
               "sku",
+              "bouncer_size",
+              "parameter_overrides",
               "target",
               "replicas_per_cell",
               "created_at",
@@ -20497,6 +20527,15 @@
             "ram",
             "sort_order"
           ]
+        },
+        "bouncer_size": {
+          "type": "string",
+          "description": "The size of the bouncer as a SKU name (e.g., 'PGB_5')"
+        },
+        "parameter_overrides": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Bouncer configuration parameters that have been changed from their default values, nested by namespace (e.g., {\"pgbouncer\": {\"default_pool_size\": \"100\"}})"
         },
         "target": {
           "type": "string",
@@ -20725,6 +20764,8 @@
         "id",
         "name",
         "sku",
+        "bouncer_size",
+        "parameter_overrides",
         "target",
         "replicas_per_cell",
         "created_at",
