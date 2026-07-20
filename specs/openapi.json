@@ -14070,13 +14070,6 @@
                 "type": "string",
                 "description": "The ID of the branch change request"
               },
-              "restart": {
-                "items": {
-                  "type": "integer"
-                },
-                "type": "array",
-                "description": "The ports requiring a restart when changes are applied"
-              },
               "state": {
                 "type": "string",
                 "enum": [
@@ -14234,7 +14227,6 @@
             },
             "required": [
               "id",
-              "restart",
               "state",
               "started_at",
               "completed_at",
@@ -14285,13 +14277,6 @@
         "id": {
           "type": "string",
           "description": "The ID of the branch change request"
-        },
-        "restart": {
-          "items": {
-            "type": "integer"
-          },
-          "type": "array",
-          "description": "The ports requiring a restart when changes are applied"
         },
         "state": {
           "type": "string",
@@ -14450,7 +14435,6 @@
       },
       "required": [
         "id",
-        "restart",
         "state",
         "started_at",
         "completed_at",
