@@ -20213,11 +20213,6 @@
                 "type": "string",
                 "description": "The size of the bouncer as a SKU name (e.g., 'PGB_5')"
               },
-              "parameter_overrides": {
-                "type": "object",
-                "additionalProperties": true,
-                "description": "Bouncer configuration parameters that have been changed from their default values, nested by namespace (e.g., {\"pgbouncer\": {\"default_pool_size\": \"100\"}})"
-              },
               "target": {
                 "type": "string",
                 "enum": [
@@ -20446,7 +20441,6 @@
               "name",
               "sku",
               "bouncer_size",
-              "parameter_overrides",
               "target",
               "replicas_per_cell",
               "created_at",
@@ -20515,11 +20509,6 @@
         "bouncer_size": {
           "type": "string",
           "description": "The size of the bouncer as a SKU name (e.g., 'PGB_5')"
-        },
-        "parameter_overrides": {
-          "type": "object",
-          "additionalProperties": true,
-          "description": "Bouncer configuration parameters that have been changed from their default values, nested by namespace (e.g., {\"pgbouncer\": {\"default_pool_size\": \"100\"}})"
         },
         "target": {
           "type": "string",
@@ -20749,7 +20738,6 @@
         "name",
         "sku",
         "bouncer_size",
-        "parameter_overrides",
         "target",
         "replicas_per_cell",
         "created_at",
