@@ -3972,6 +3972,7 @@
             "name": "keyspace",
             "type": "string",
             "in": "query",
+            "required": true,
             "description": "The keyspace to filter by"
           },
           {
@@ -4074,6 +4075,7 @@
             "name": "keyspace",
             "type": "string",
             "in": "query",
+            "required": true,
             "description": "The keyspace to filter by"
           },
           {
