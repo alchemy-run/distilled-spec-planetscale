@@ -6281,7 +6281,7 @@
             "name": "successor",
             "type": "string",
             "in": "query",
-            "description": "The optional role to reassign ownership to before dropping"
+            "description": "The optional role to reassign ownership to before dropping. Accepts the role's ID, or its username with or without the branch ID suffix."
           }
         ],
         "responses": {
@@ -6352,7 +6352,7 @@
               "properties": {
                 "successor": {
                   "type": "string",
-                  "description": "The role to reassign ownership to"
+                  "description": "The role to reassign ownership to. Accepts the role's ID, or its username with or without the branch ID suffix."
                 }
               },
               "required": [
