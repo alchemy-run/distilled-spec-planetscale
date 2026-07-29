@@ -281,7 +281,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/ClusterSizeSkuSerializer"
+                "$ref": "#/definitions/ClusterSizeSku"
               }
             },
             "headers": {}
@@ -2914,8 +2914,19 @@
           {
             "name": "period",
             "type": "string",
+            "enum": [
+              "15m",
+              "1h",
+              "3h",
+              "6h",
+              "12h",
+              "1d",
+              "2d",
+              "7d",
+              "8d"
+            ],
             "in": "query",
-            "description": "Time period for filtering query statistics (e.g., '1h', '24h')"
+            "description": "Time period for filtering query statistics"
           },
           {
             "name": "sort",
@@ -3097,8 +3108,19 @@
           {
             "name": "period",
             "type": "string",
+            "enum": [
+              "15m",
+              "1h",
+              "3h",
+              "6h",
+              "12h",
+              "1d",
+              "2d",
+              "7d",
+              "8d"
+            ],
             "in": "query",
-            "description": "Time period for filtering anomalies (e.g., '1h', '24h')"
+            "description": "Time period for filtering anomalies"
           },
           {
             "name": "page",
@@ -3256,8 +3278,19 @@
           {
             "name": "period",
             "type": "string",
+            "enum": [
+              "15m",
+              "1h",
+              "3h",
+              "6h",
+              "12h",
+              "1d",
+              "2d",
+              "7d",
+              "8d"
+            ],
             "in": "query",
-            "description": "Time period for filtering query errors (e.g., '1h', '24h')"
+            "description": "Time period for filtering query errors"
           },
           {
             "name": "sort",
@@ -3386,8 +3419,19 @@
           {
             "name": "period",
             "type": "string",
+            "enum": [
+              "15m",
+              "1h",
+              "3h",
+              "6h",
+              "12h",
+              "1d",
+              "2d",
+              "7d",
+              "8d"
+            ],
             "in": "query",
-            "description": "Time period for filtering queries (e.g., '1h', '24h')"
+            "description": "Time period for filtering queries"
           },
           {
             "name": "page",
@@ -3545,8 +3589,19 @@
           {
             "name": "period",
             "type": "string",
+            "enum": [
+              "15m",
+              "1h",
+              "3h",
+              "6h",
+              "12h",
+              "1d",
+              "2d",
+              "7d",
+              "8d"
+            ],
             "in": "query",
-            "description": "Time period for filtering tags (e.g., '1h', '24h')"
+            "description": "Time period for filtering tags"
           },
           {
             "name": "fingerprint",
@@ -3684,8 +3739,19 @@
           {
             "name": "period",
             "type": "string",
+            "enum": [
+              "15m",
+              "1h",
+              "3h",
+              "6h",
+              "12h",
+              "1d",
+              "2d",
+              "7d",
+              "8d"
+            ],
             "in": "query",
-            "description": "Time period for filtering query statistics (e.g., '1h', '24h')"
+            "description": "Time period for filtering query statistics"
           },
           {
             "name": "sort",
@@ -3873,8 +3939,19 @@
           {
             "name": "period",
             "type": "string",
+            "enum": [
+              "15m",
+              "1h",
+              "3h",
+              "6h",
+              "12h",
+              "1d",
+              "2d",
+              "7d",
+              "8d"
+            ],
             "in": "query",
-            "description": "Time period for filtering tag values (e.g., '1h', '24h')"
+            "description": "Time period for filtering tag values"
           },
           {
             "name": "fingerprint",
@@ -3997,8 +4074,19 @@
           {
             "name": "period",
             "type": "string",
+            "enum": [
+              "15m",
+              "1h",
+              "3h",
+              "6h",
+              "12h",
+              "1d",
+              "2d",
+              "7d",
+              "8d"
+            ],
             "in": "query",
-            "description": "Time period for filtering query statistics (e.g., '1h', '24h')"
+            "description": "Time period for filtering query statistics"
           },
           {
             "name": "page",
@@ -4100,8 +4188,19 @@
           {
             "name": "period",
             "type": "string",
+            "enum": [
+              "15m",
+              "1h",
+              "3h",
+              "6h",
+              "12h",
+              "1d",
+              "2d",
+              "7d",
+              "8d"
+            ],
             "in": "query",
-            "description": "Time period for filtering query statistics (e.g., '1h', '24h')"
+            "description": "Time period for filtering query statistics"
           }
         ],
         "responses": {
@@ -6841,8 +6940,19 @@
           {
             "name": "period",
             "type": "string",
+            "enum": [
+              "15m",
+              "1h",
+              "3h",
+              "6h",
+              "12h",
+              "1d",
+              "2d",
+              "7d",
+              "8d"
+            ],
             "in": "query",
-            "description": "Time period filter (e.g., '1h', '24h', '7d')"
+            "description": "Time period filter"
           },
           {
             "name": "created_at",
@@ -19721,7 +19831,7 @@
         "payment_info_required"
       ]
     },
-    "ClusterSizeSkuSerializer": {
+    "ClusterSizeSku": {
       "type": "object",
       "properties": {
         "name": {
