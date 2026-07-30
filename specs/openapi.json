@@ -30160,6 +30160,10 @@
       "description": "          Resources for downloading query insights data.\n"
     },
     {
+      "name": "Read-only replicas",
+      "description": "          Resources for managing Postgres read-only replicas.\n"
+    },
+    {
       "name": "Roles",
       "description": "          Resources for managing role credentials.\n"
     },
