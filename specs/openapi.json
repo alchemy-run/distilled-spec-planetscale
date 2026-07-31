@@ -7603,6 +7603,10 @@
                     "type": "string"
                   },
                   "description": "List of IPv4 CIDR ranges (e.g., ['192.168.1.0/24', '192.168.1.1/32']). Must contain at least one valid IPv4 address or range."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "An optional description for the IP restriction rule."
                 }
               },
               "required": [
@@ -7748,6 +7752,10 @@
                     "type": "string"
                   },
                   "description": "List of IPv4 CIDR ranges (e.g., ['192.168.1.0/24', '192.168.1.1/32']). Only provided fields will be updated."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "An optional description for the IP restriction rule. Pass an empty string to clear."
                 }
               }
             }
@@ -12756,6 +12764,10 @@
           "type": "integer",
           "description": "The current page number"
         },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
+        },
         "next_page": {
           "type": "integer",
           "description": "The next page number, or null when this is the last page",
@@ -12881,6 +12893,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -12996,6 +13009,10 @@
         "current_page": {
           "type": "integer",
           "description": "The current page number"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
         },
         "next_page": {
           "type": "integer",
@@ -13119,6 +13136,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -13231,6 +13249,10 @@
         "current_page": {
           "type": "integer",
           "description": "The current page number"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
         },
         "next_page": {
           "type": "integer",
@@ -13583,6 +13605,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -13925,6 +13948,10 @@
           "type": "integer",
           "description": "The current page number"
         },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
+        },
         "next_page": {
           "type": "integer",
           "description": "The next page number, or null when this is the last page",
@@ -14142,6 +14169,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -14159,6 +14187,10 @@
         "current_page": {
           "type": "integer",
           "description": "The current page number"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
         },
         "next_page": {
           "type": "integer",
@@ -14383,6 +14415,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -14596,6 +14629,10 @@
         "current_page": {
           "type": "integer",
           "description": "The current page number"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
         },
         "next_page": {
           "type": "integer",
@@ -14928,6 +14965,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -15250,6 +15288,10 @@
           "type": "integer",
           "description": "The current page number"
         },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
+        },
         "next_page": {
           "type": "integer",
           "description": "The next page number, or null when this is the last page",
@@ -15380,6 +15422,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -15752,6 +15795,10 @@
           "type": "integer",
           "description": "The current page number"
         },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
+        },
         "next_page": {
           "type": "integer",
           "description": "The next page number, or null when this is the last page",
@@ -15938,6 +15985,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -16114,6 +16162,10 @@
         "current_page": {
           "type": "integer",
           "description": "The current page number"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
         },
         "next_page": {
           "type": "integer",
@@ -16383,6 +16435,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -16642,6 +16695,10 @@
           "type": "integer",
           "description": "The current page number"
         },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
+        },
         "next_page": {
           "type": "integer",
           "description": "The next page number, or null when this is the last page",
@@ -16686,6 +16743,11 @@
                 "type": "array",
                 "description": "List of CIDR ranges"
               },
+              "description": {
+                "type": "string",
+                "description": "An optional description for the IP restriction rule",
+                "x-nullable": true
+              },
               "created_at": {
                 "type": "string",
                 "description": "When the entry was created"
@@ -16727,6 +16789,7 @@
               "schema",
               "role",
               "cidrs",
+              "description",
               "created_at",
               "updated_at",
               "deleted_at",
@@ -16738,6 +16801,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -16766,6 +16830,11 @@
           },
           "type": "array",
           "description": "List of CIDR ranges"
+        },
+        "description": {
+          "type": "string",
+          "description": "An optional description for the IP restriction rule",
+          "x-nullable": true
         },
         "created_at": {
           "type": "string",
@@ -16808,6 +16877,7 @@
         "schema",
         "role",
         "cidrs",
+        "description",
         "created_at",
         "updated_at",
         "deleted_at",
@@ -16824,6 +16894,10 @@
         "current_page": {
           "type": "integer",
           "description": "The current page number"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
         },
         "next_page": {
           "type": "integer",
@@ -17182,6 +17256,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -17530,6 +17605,10 @@
           "type": "integer",
           "description": "The current page number"
         },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
+        },
         "next_page": {
           "type": "integer",
           "description": "The next page number, or null when this is the last page",
@@ -17617,6 +17696,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -17634,6 +17714,10 @@
         "current_page": {
           "type": "integer",
           "description": "The current page number"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
         },
         "next_page": {
           "type": "integer",
@@ -17784,6 +17868,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -17871,6 +17956,10 @@
         "current_page": {
           "type": "integer",
           "description": "The current page number"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
         },
         "next_page": {
           "type": "integer",
@@ -18016,6 +18105,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -18151,6 +18241,10 @@
           "type": "integer",
           "description": "The current page number"
         },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
+        },
         "next_page": {
           "type": "integer",
           "description": "The next page number, or null when this is the last page",
@@ -18212,6 +18306,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -18229,6 +18324,10 @@
         "current_page": {
           "type": "integer",
           "description": "The current page number"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
         },
         "next_page": {
           "type": "integer",
@@ -18341,6 +18440,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -18442,6 +18542,10 @@
         "current_page": {
           "type": "integer",
           "description": "The current page number"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
         },
         "next_page": {
           "type": "integer",
@@ -18861,6 +18965,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -19270,6 +19375,10 @@
           "type": "integer",
           "description": "The current page number"
         },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
+        },
         "next_page": {
           "type": "integer",
           "description": "The next page number, or null when this is the last page",
@@ -19430,6 +19539,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -19581,6 +19691,10 @@
           "type": "integer",
           "description": "The current page number"
         },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
+        },
         "next_page": {
           "type": "integer",
           "description": "The next page number, or null when this is the last page",
@@ -19716,6 +19830,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -20263,6 +20378,10 @@
           "type": "integer",
           "description": "The current page number"
         },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
+        },
         "next_page": {
           "type": "integer",
           "description": "The next page number, or null when this is the last page",
@@ -20575,6 +20694,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -20878,6 +20998,10 @@
           "type": "integer",
           "description": "The current page number"
         },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
+        },
         "next_page": {
           "type": "integer",
           "description": "The next page number, or null when this is the last page",
@@ -21176,6 +21300,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -21193,6 +21318,10 @@
         "current_page": {
           "type": "integer",
           "description": "The current page number"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
         },
         "next_page": {
           "type": "integer",
@@ -21347,6 +21476,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -21762,6 +21892,10 @@
           "type": "integer",
           "description": "The current page number"
         },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
+        },
         "next_page": {
           "type": "integer",
           "description": "The next page number, or null when this is the last page",
@@ -21831,6 +21965,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -21848,6 +21983,10 @@
         "current_page": {
           "type": "integer",
           "description": "The current page number"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
         },
         "next_page": {
           "type": "integer",
@@ -21938,6 +22077,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -21955,6 +22095,10 @@
         "current_page": {
           "type": "integer",
           "description": "The current page number"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
         },
         "next_page": {
           "type": "integer",
@@ -22225,6 +22369,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -22304,6 +22449,10 @@
         "current_page": {
           "type": "integer",
           "description": "The current page number"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
         },
         "next_page": {
           "type": "integer",
@@ -22525,6 +22674,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -22713,6 +22863,10 @@
           "type": "integer",
           "description": "The current page number"
         },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
+        },
         "next_page": {
           "type": "integer",
           "description": "The next page number, or null when this is the last page",
@@ -22785,6 +22939,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -22802,6 +22957,10 @@
         "current_page": {
           "type": "integer",
           "description": "The current page number"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
         },
         "next_page": {
           "type": "integer",
@@ -23049,6 +23208,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -23286,6 +23446,10 @@
           "type": "integer",
           "description": "The current page number"
         },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
+        },
         "next_page": {
           "type": "integer",
           "description": "The next page number, or null when this is the last page",
@@ -23452,6 +23616,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -24006,6 +24171,10 @@
         "current_page": {
           "type": "integer",
           "description": "The current page number"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
         },
         "next_page": {
           "type": "integer",
@@ -24582,6 +24751,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -25148,6 +25318,10 @@
           "type": "integer",
           "description": "The current page number"
         },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
+        },
         "next_page": {
           "type": "integer",
           "description": "The next page number, or null when this is the last page",
@@ -25239,6 +25413,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -25321,6 +25496,10 @@
           "type": "integer",
           "description": "The current page number"
         },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
+        },
         "next_page": {
           "type": "integer",
           "description": "The next page number, or null when this is the last page",
@@ -25340,6 +25519,14 @@
           "type": "string",
           "description": "The previous page of results, or null when this is the first page",
           "x-nullable": true
+        },
+        "total_count": {
+          "type": "integer",
+          "description": "The total number of matching results"
+        },
+        "total_pages": {
+          "type": "integer",
+          "description": "The total number of pages of matching results"
         },
         "data": {
           "type": "array",
@@ -26129,10 +26316,13 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
         "prev_page_url",
+        "total_count",
+        "total_pages",
         "data"
       ]
     },
@@ -27498,6 +27688,10 @@
           "type": "integer",
           "description": "The current page number"
         },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
+        },
         "next_page": {
           "type": "integer",
           "description": "The next page number, or null when this is the last page",
@@ -27645,6 +27839,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -27662,6 +27857,10 @@
         "current_page": {
           "type": "integer",
           "description": "The current page number"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
         },
         "next_page": {
           "type": "integer",
@@ -28260,6 +28459,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -28277,6 +28477,10 @@
         "current_page": {
           "type": "integer",
           "description": "The current page number"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
         },
         "next_page": {
           "type": "integer",
@@ -28387,6 +28591,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -28486,6 +28691,10 @@
         "current_page": {
           "type": "integer",
           "description": "The current page number"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
         },
         "next_page": {
           "type": "integer",
@@ -28590,6 +28799,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -28607,6 +28817,10 @@
         "current_page": {
           "type": "integer",
           "description": "The current page number"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
         },
         "next_page": {
           "type": "integer",
@@ -28672,6 +28886,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -28726,6 +28941,10 @@
         "current_page": {
           "type": "integer",
           "description": "The current page number"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
         },
         "next_page": {
           "type": "integer",
@@ -29146,6 +29365,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
@@ -29556,6 +29776,10 @@
           "type": "integer",
           "description": "The current page number"
         },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
+        },
         "next_page": {
           "type": "integer",
           "description": "The next page number, or null when this is the last page",
@@ -29821,6 +30045,7 @@
       "required": [
         "type",
         "current_page",
+        "per_page",
         "next_page",
         "next_page_url",
         "prev_page",
