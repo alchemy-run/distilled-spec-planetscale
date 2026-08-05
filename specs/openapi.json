@@ -2950,6 +2950,7 @@
               "sumShardQueries",
               "maxShardQueries",
               "avgShardQueries",
+              "avgParallelWorkers",
               "table",
               "qualifiedTable",
               "tableKeyspace",
@@ -3774,6 +3775,7 @@
               "sumShardQueries",
               "maxShardQueries",
               "avgShardQueries",
+              "avgParallelWorkers",
               "table",
               "qualifiedTable",
               "tableKeyspace",
@@ -14002,8 +14004,7 @@
                   "replica",
                   "replica_az_affinity"
                 ],
-                "description": "The backend target for the bouncer after the resize",
-                "x-nullable": true
+                "description": "The backend target for the bouncer after the resize"
               },
               "parameters": {
                 "type": "object",
@@ -14021,8 +14022,7 @@
                   "replica",
                   "replica_az_affinity"
                 ],
-                "description": "The backend target for the bouncer before the resize",
-                "x-nullable": true
+                "description": "The backend target for the bouncer before the resize"
               },
               "previous_parameters": {
                 "type": "object",
@@ -14676,6 +14676,14 @@
           "description": "The previous page of results, or null when this is the first page",
           "x-nullable": true
         },
+        "total_count": {
+          "type": "integer",
+          "description": "The total number of matching results"
+        },
+        "total_pages": {
+          "type": "integer",
+          "description": "The total number of pages of matching results"
+        },
         "data": {
           "type": "array",
           "items": {
@@ -14992,6 +15000,8 @@
         "next_page_url",
         "prev_page",
         "prev_page_url",
+        "total_count",
+        "total_pages",
         "data"
       ]
     },
@@ -20267,8 +20277,7 @@
             "replica",
             "replica_az_affinity"
           ],
-          "description": "The backend target for the bouncer after the resize",
-          "x-nullable": true
+          "description": "The backend target for the bouncer after the resize"
         },
         "parameters": {
           "type": "object",
@@ -20286,8 +20295,7 @@
             "replica",
             "replica_az_affinity"
           ],
-          "description": "The backend target for the bouncer before the resize",
-          "x-nullable": true
+          "description": "The backend target for the bouncer before the resize"
         },
         "previous_parameters": {
           "type": "object",
@@ -21197,6 +21205,10 @@
                 "type": "number",
                 "description": "The average number of shard queries"
               },
+              "avg_parallel_workers": {
+                "type": "number",
+                "description": "The average number of parallel workers"
+              },
               "sum_rows_read": {
                 "type": "integer",
                 "description": "The total number of rows read"
@@ -21345,6 +21357,7 @@
               "sum_shard_queries",
               "max_shard_queries",
               "avg_shard_queries",
+              "avg_parallel_workers",
               "sum_rows_read",
               "sum_rows_affected",
               "sum_rows_returned",
@@ -21657,6 +21670,10 @@
           "type": "number",
           "description": "The average number of shard queries"
         },
+        "avg_parallel_workers": {
+          "type": "number",
+          "description": "The average number of parallel workers"
+        },
         "sum_rows_read": {
           "type": "integer",
           "description": "The total number of rows read"
@@ -21805,6 +21822,7 @@
         "sum_shard_queries",
         "max_shard_queries",
         "avg_shard_queries",
+        "avg_parallel_workers",
         "sum_rows_read",
         "sum_rows_affected",
         "sum_rows_returned",
@@ -22272,6 +22290,10 @@
                 "type": "number",
                 "description": "The average number of shard queries"
               },
+              "avg_parallel_workers": {
+                "type": "number",
+                "description": "The average number of parallel workers"
+              },
               "sum_rows_read": {
                 "type": "integer",
                 "description": "The total number of rows read"
@@ -22414,6 +22436,7 @@
               "sum_shard_queries",
               "max_shard_queries",
               "avg_shard_queries",
+              "avg_parallel_workers",
               "sum_rows_read",
               "sum_rows_affected",
               "sum_rows_returned",
@@ -30531,6 +30554,10 @@
     {
       "name": "Webhooks",
       "description": "            Resources for managing database webhooks.\n"
+    },
+    {
+      "name": "AuthAttemptExports",
+      "description": "            Resources for creating and downloading organization auth attempt exports.\n"
     },
     {
       "name": "Invoices",
