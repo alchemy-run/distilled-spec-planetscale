@@ -5874,6 +5874,130 @@
           }
         },
         "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `write_database`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `write_databases` |\n| Database | `write_database` |"
+      },
+      "get": {
+        "tags": [
+          "api-branch_resizes"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "list_branch_resize_requests",
+        "summary": "Get branch resize requests",
+        "parameters": [
+          {
+            "name": "organization",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "The name of the organization the branch belongs to"
+          },
+          {
+            "name": "database",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "The name of the database the branch belongs to"
+          },
+          {
+            "name": "branch",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "The name of the branch"
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "in": "query",
+            "default": 1,
+            "description": "If provided, specifies the page offset of returned results"
+          },
+          {
+            "name": "per_page",
+            "type": "integer",
+            "in": "query",
+            "default": 25,
+            "description": "If provided, specifies the number of returned results"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns branch resize requests",
+            "schema": {
+              "$ref": "#/definitions/PaginatedMysqlClusterResizeRequest"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_branch`, `delete_branch`, `create_branch`, `connect_production_branch`, `connect_branch`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_branches` |\n| Database | `read_branches` |\n| Branch | `read_branch` |"
+      },
+      "put": {
+        "tags": [
+          "api-branch_resizes"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "update_branch_resize_request",
+        "summary": "Upsert a resize request",
+        "parameters": [
+          {
+            "name": "organization",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "The name of the organization the branch belongs to"
+          },
+          {
+            "name": "database",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "The name of the database the branch belongs to"
+          },
+          {
+            "name": "branch",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "The name of the branch"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns branch resize request",
+            "schema": {
+              "$ref": "#/definitions/MysqlClusterResizeRequest"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `write_database`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `write_databases` |\n| Database | `write_database` |"
       }
     },
     "/organizations/{organization}/databases/{database}/branches/{branch}/roles": {
@@ -14759,9 +14883,28 @@
                 "type": "string",
                 "description": "The size of the vtgate cluster for the branch"
               },
+              "vtgate_name": {
+                "type": "string",
+                "description": "The public SKU representing the VTGate size",
+                "x-nullable": true
+              },
               "vtgate_count": {
                 "type": "integer",
                 "description": "The number of vtgate instances in the branch"
+              },
+              "vtgate_autoscaling": {
+                "type": "boolean",
+                "description": "Whether VTGate autoscaling is enabled"
+              },
+              "vtgate_max_count": {
+                "type": "integer",
+                "description": "The maximum number of VTGate instances when autoscaling is enabled",
+                "x-nullable": true
+              },
+              "vtgate_target_cpu_utilization": {
+                "type": "integer",
+                "description": "The target CPU utilization for VTGate autoscaling",
+                "x-nullable": true
               },
               "cluster_name": {
                 "type": "string",
@@ -14970,7 +15113,11 @@
               "state",
               "direct_vtgate",
               "vtgate_size",
+              "vtgate_name",
               "vtgate_count",
+              "vtgate_autoscaling",
+              "vtgate_max_count",
+              "vtgate_target_cpu_utilization",
               "cluster_name",
               "cluster_iops",
               "ready",
@@ -15078,9 +15225,28 @@
           "type": "string",
           "description": "The size of the vtgate cluster for the branch"
         },
+        "vtgate_name": {
+          "type": "string",
+          "description": "The public SKU representing the VTGate size",
+          "x-nullable": true
+        },
         "vtgate_count": {
           "type": "integer",
           "description": "The number of vtgate instances in the branch"
+        },
+        "vtgate_autoscaling": {
+          "type": "boolean",
+          "description": "Whether VTGate autoscaling is enabled"
+        },
+        "vtgate_max_count": {
+          "type": "integer",
+          "description": "The maximum number of VTGate instances when autoscaling is enabled",
+          "x-nullable": true
+        },
+        "vtgate_target_cpu_utilization": {
+          "type": "integer",
+          "description": "The target CPU utilization for VTGate autoscaling",
+          "x-nullable": true
         },
         "cluster_name": {
           "type": "string",
@@ -15289,7 +15455,11 @@
         "state",
         "direct_vtgate",
         "vtgate_size",
+        "vtgate_name",
         "vtgate_count",
+        "vtgate_autoscaling",
+        "vtgate_max_count",
+        "vtgate_target_cpu_utilization",
         "cluster_name",
         "cluster_iops",
         "ready",
@@ -15817,6 +15987,334 @@
         "step",
         "url",
         "options",
+        "actor"
+      ]
+    },
+    "PaginatedMysqlClusterResizeRequest": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The response type. Always \"list\" for paginated responses."
+        },
+        "current_page": {
+          "type": "integer",
+          "description": "The current page number"
+        },
+        "per_page": {
+          "type": "integer",
+          "description": "The maximum number of results per page"
+        },
+        "next_page": {
+          "type": "integer",
+          "description": "The next page number, or null when this is the last page",
+          "x-nullable": true
+        },
+        "next_page_url": {
+          "type": "string",
+          "description": "The next page of results, or null when this is the last page",
+          "x-nullable": true
+        },
+        "prev_page": {
+          "type": "integer",
+          "description": "The previous page number, or null when this is the first page",
+          "x-nullable": true
+        },
+        "prev_page_url": {
+          "type": "string",
+          "description": "The previous page of results, or null when this is the first page",
+          "x-nullable": true
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The ID of the branch resize request"
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "pending",
+                  "resizing",
+                  "canceled",
+                  "completed",
+                  "queued"
+                ],
+                "description": "The state of the branch resize request"
+              },
+              "started_at": {
+                "type": "string",
+                "description": "When the branch resize request started",
+                "x-nullable": true
+              },
+              "completed_at": {
+                "type": "string",
+                "description": "When the branch resize request completed",
+                "x-nullable": true
+              },
+              "created_at": {
+                "type": "string",
+                "description": "When the branch resize request was created"
+              },
+              "updated_at": {
+                "type": "string",
+                "description": "When the branch resize request was last updated"
+              },
+              "vtgate_size": {
+                "type": "string",
+                "description": "The size of the vtgate cluster"
+              },
+              "previous_vtgate_size": {
+                "type": "string",
+                "description": "The previous size of the vtgate cluster"
+              },
+              "vtgate_count": {
+                "type": "integer",
+                "description": "The number of vtgates in an availability zone"
+              },
+              "previous_vtgate_count": {
+                "type": "integer",
+                "description": "The previous number of vtgates in the availability zone"
+              },
+              "vtgate_max_count": {
+                "type": "integer",
+                "description": "The maximum number of vtgates in an availability zone when autoscaling is enabled"
+              },
+              "previous_vtgate_max_count": {
+                "type": "integer",
+                "description": "The previous maximum number of vtgates in the availability zone when autoscaling is enabled"
+              },
+              "vtgate_autoscaling": {
+                "type": "boolean",
+                "description": "If autoscaling is enabled for the vtgate cluster"
+              },
+              "previous_vtgate_autoscaling": {
+                "type": "boolean",
+                "description": "The previous autoscaling setting for the vtgate cluster"
+              },
+              "vtgate_target_cpu_utilization": {
+                "type": "number",
+                "description": "The target CPU utilization for the vtgate cluster"
+              },
+              "previous_vtgate_target_cpu_utilization": {
+                "type": "number",
+                "description": "The previous target CPU utilization for the vtgate cluster"
+              },
+              "vtgate_name": {
+                "type": "string",
+                "description": "The SKU representing the vtgate cluster size: VTG_5, VTG_10,…"
+              },
+              "vtgate_display_name": {
+                "type": "string",
+                "description": "The SKU representing the vtgate cluster size for display"
+              },
+              "previous_vtgate_name": {
+                "type": "string",
+                "description": "The previous SKU representing the vtgate cluster size"
+              },
+              "previous_vtgate_display_name": {
+                "type": "string",
+                "description": "The previous SKU representing the vtgate cluster size for display"
+              },
+              "actor": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "The ID of the actor"
+                  },
+                  "display_name": {
+                    "type": "string",
+                    "description": "The name of the actor"
+                  },
+                  "avatar_url": {
+                    "type": "string",
+                    "description": "The URL of the actor's avatar"
+                  }
+                },
+                "required": [
+                  "id",
+                  "display_name",
+                  "avatar_url"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "state",
+              "started_at",
+              "completed_at",
+              "created_at",
+              "updated_at",
+              "vtgate_size",
+              "previous_vtgate_size",
+              "vtgate_count",
+              "previous_vtgate_count",
+              "vtgate_max_count",
+              "previous_vtgate_max_count",
+              "vtgate_autoscaling",
+              "previous_vtgate_autoscaling",
+              "vtgate_target_cpu_utilization",
+              "previous_vtgate_target_cpu_utilization",
+              "vtgate_name",
+              "vtgate_display_name",
+              "previous_vtgate_name",
+              "previous_vtgate_display_name",
+              "actor"
+            ]
+          }
+        }
+      },
+      "required": [
+        "type",
+        "current_page",
+        "per_page",
+        "next_page",
+        "next_page_url",
+        "prev_page",
+        "prev_page_url",
+        "data"
+      ]
+    },
+    "MysqlClusterResizeRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the branch resize request"
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "resizing",
+            "canceled",
+            "completed",
+            "queued"
+          ],
+          "description": "The state of the branch resize request"
+        },
+        "started_at": {
+          "type": "string",
+          "description": "When the branch resize request started",
+          "x-nullable": true
+        },
+        "completed_at": {
+          "type": "string",
+          "description": "When the branch resize request completed",
+          "x-nullable": true
+        },
+        "created_at": {
+          "type": "string",
+          "description": "When the branch resize request was created"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "When the branch resize request was last updated"
+        },
+        "vtgate_size": {
+          "type": "string",
+          "description": "The size of the vtgate cluster"
+        },
+        "previous_vtgate_size": {
+          "type": "string",
+          "description": "The previous size of the vtgate cluster"
+        },
+        "vtgate_count": {
+          "type": "integer",
+          "description": "The number of vtgates in an availability zone"
+        },
+        "previous_vtgate_count": {
+          "type": "integer",
+          "description": "The previous number of vtgates in the availability zone"
+        },
+        "vtgate_max_count": {
+          "type": "integer",
+          "description": "The maximum number of vtgates in an availability zone when autoscaling is enabled"
+        },
+        "previous_vtgate_max_count": {
+          "type": "integer",
+          "description": "The previous maximum number of vtgates in the availability zone when autoscaling is enabled"
+        },
+        "vtgate_autoscaling": {
+          "type": "boolean",
+          "description": "If autoscaling is enabled for the vtgate cluster"
+        },
+        "previous_vtgate_autoscaling": {
+          "type": "boolean",
+          "description": "The previous autoscaling setting for the vtgate cluster"
+        },
+        "vtgate_target_cpu_utilization": {
+          "type": "number",
+          "description": "The target CPU utilization for the vtgate cluster"
+        },
+        "previous_vtgate_target_cpu_utilization": {
+          "type": "number",
+          "description": "The previous target CPU utilization for the vtgate cluster"
+        },
+        "vtgate_name": {
+          "type": "string",
+          "description": "The SKU representing the vtgate cluster size: VTG_5, VTG_10,…"
+        },
+        "vtgate_display_name": {
+          "type": "string",
+          "description": "The SKU representing the vtgate cluster size for display"
+        },
+        "previous_vtgate_name": {
+          "type": "string",
+          "description": "The previous SKU representing the vtgate cluster size"
+        },
+        "previous_vtgate_display_name": {
+          "type": "string",
+          "description": "The previous SKU representing the vtgate cluster size for display"
+        },
+        "actor": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the actor"
+            },
+            "display_name": {
+              "type": "string",
+              "description": "The name of the actor"
+            },
+            "avatar_url": {
+              "type": "string",
+              "description": "The URL of the actor's avatar"
+            }
+          },
+          "required": [
+            "id",
+            "display_name",
+            "avatar_url"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "state",
+        "started_at",
+        "completed_at",
+        "created_at",
+        "updated_at",
+        "vtgate_size",
+        "previous_vtgate_size",
+        "vtgate_count",
+        "previous_vtgate_count",
+        "vtgate_max_count",
+        "previous_vtgate_max_count",
+        "vtgate_autoscaling",
+        "previous_vtgate_autoscaling",
+        "vtgate_target_cpu_utilization",
+        "previous_vtgate_target_cpu_utilization",
+        "vtgate_name",
+        "vtgate_display_name",
+        "previous_vtgate_name",
+        "previous_vtgate_display_name",
         "actor"
       ]
     },
@@ -20543,10 +21041,6 @@
                   "sort_order"
                 ]
               },
-              "bouncer_size": {
-                "type": "string",
-                "description": "The size of the bouncer as a SKU name (e.g., 'PGB_5')"
-              },
               "target": {
                 "type": "string",
                 "enum": [
@@ -20774,7 +21268,6 @@
               "id",
               "name",
               "sku",
-              "bouncer_size",
               "target",
               "replicas_per_cell",
               "created_at",
@@ -20840,10 +21333,6 @@
             "ram",
             "sort_order"
           ]
-        },
-        "bouncer_size": {
-          "type": "string",
-          "description": "The size of the bouncer as a SKU name (e.g., 'PGB_5')"
         },
         "target": {
           "type": "string",
@@ -21072,7 +21561,6 @@
         "id",
         "name",
         "sku",
-        "bouncer_size",
         "target",
         "replicas_per_cell",
         "created_at",
@@ -30510,10 +30998,6 @@
     {
       "name": "Bouncers",
       "description": "          Resources for managing postgres bouncers.\n"
-    },
-    {
-      "name": "Failovers",
-      "description": "          Resources for moving the primary of a Postgres branch.\n"
     },
     {
       "name": "Query Insights reports",
