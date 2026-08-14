@@ -577,7 +577,7 @@
                 },
                 "deletion_protected": {
                   "type": "boolean",
-                  "description": "Whether customer-managed deletion protection is enabled for the database"
+                  "description": "Whether deletion protection is enabled for the database"
                 },
                 "production_branch_web_console": {
                   "type": "boolean",
@@ -1187,7 +1187,7 @@
                 },
                 "deletion_protected": {
                   "type": "boolean",
-                  "description": "Whether customer-managed deletion protection is enabled for the branch"
+                  "description": "Whether deletion protection is enabled for the branch"
                 },
                 "parent_branch": {
                   "type": "string",
@@ -1382,7 +1382,7 @@
                 },
                 "deletion_protected": {
                   "type": "boolean",
-                  "description": "Whether customer-managed deletion protection is enabled for the branch"
+                  "description": "Whether deletion protection is enabled for the branch"
                 }
               }
             }
@@ -26901,11 +26901,7 @@
         },
         "deletion_protected": {
           "type": "boolean",
-          "description": "Whether customer-managed deletion protection is enabled for the database"
-        },
-        "deletion_protection_managed": {
-          "type": "boolean",
-          "description": "Whether deletion protection is managed by PlanetScale and cannot be disabled"
+          "description": "Whether deletion protection is enabled for the database"
         },
         "resizing": {
           "type": "boolean",
@@ -27011,7 +27007,6 @@
         "default_branch",
         "require_approval_for_deploy",
         "deletion_protected",
-        "deletion_protection_managed",
         "resizing",
         "resize_queued",
         "config_changing",
@@ -27286,11 +27281,7 @@
               },
               "deletion_protected": {
                 "type": "boolean",
-                "description": "Whether customer-managed deletion protection is enabled for the database"
-              },
-              "deletion_protection_managed": {
-                "type": "boolean",
-                "description": "Whether deletion protection is managed by PlanetScale and cannot be disabled"
+                "description": "Whether deletion protection is enabled for the database"
               },
               "resizing": {
                 "type": "boolean",
@@ -27396,7 +27387,6 @@
               "default_branch",
               "require_approval_for_deploy",
               "deletion_protected",
-              "deletion_protection_managed",
               "resizing",
               "resize_queued",
               "config_changing",
@@ -29318,11 +29308,7 @@
         },
         "deletion_protected": {
           "type": "boolean",
-          "description": "Whether customer-managed deletion protection is enabled for the branch"
-        },
-        "deletion_protection_managed": {
-          "type": "boolean",
-          "description": "Whether deletion protection is managed by PlanetScale and cannot be disabled"
+          "description": "Whether deletion protection is enabled for the branch"
         },
         "sharded": {
           "type": "boolean",
@@ -29515,7 +29501,6 @@
         "production",
         "safe_migrations",
         "deletion_protected",
-        "deletion_protection_managed",
         "sharded",
         "shard_count",
         "keyspace_count",
@@ -29700,11 +29685,7 @@
               },
               "deletion_protected": {
                 "type": "boolean",
-                "description": "Whether customer-managed deletion protection is enabled for the branch"
-              },
-              "deletion_protection_managed": {
-                "type": "boolean",
-                "description": "Whether deletion protection is managed by PlanetScale and cannot be disabled"
+                "description": "Whether deletion protection is enabled for the branch"
               },
               "sharded": {
                 "type": "boolean",
@@ -29897,7 +29878,6 @@
               "production",
               "safe_migrations",
               "deletion_protected",
-              "deletion_protection_managed",
               "sharded",
               "shard_count",
               "keyspace_count",
