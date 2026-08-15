@@ -21268,6 +21268,14 @@
           "description": "The previous page of results, or null when this is the first page",
           "x-nullable": true
         },
+        "total_count": {
+          "type": "integer",
+          "description": "The total number of matching results"
+        },
+        "total_pages": {
+          "type": "integer",
+          "description": "The total number of pages of matching results"
+        },
         "data": {
           "type": "array",
           "items": {
@@ -21419,6 +21427,8 @@
         "next_page_url",
         "prev_page",
         "prev_page_url",
+        "total_count",
+        "total_pages",
         "data"
       ]
     },
@@ -21675,6 +21685,14 @@
           "description": "The previous page of results, or null when this is the first page",
           "x-nullable": true
         },
+        "total_count": {
+          "type": "integer",
+          "description": "The total number of matching results"
+        },
+        "total_pages": {
+          "type": "integer",
+          "description": "The total number of pages of matching results"
+        },
         "data": {
           "type": "array",
           "items": {
@@ -21905,6 +21923,8 @@
         "next_page_url",
         "prev_page",
         "prev_page_url",
+        "total_count",
+        "total_pages",
         "data"
       ]
     },
@@ -27905,6 +27925,14 @@
           "description": "The previous page of results, or null when this is the first page",
           "x-nullable": true
         },
+        "total_count": {
+          "type": "integer",
+          "description": "The total number of matching results"
+        },
+        "total_pages": {
+          "type": "integer",
+          "description": "The total number of pages of matching results"
+        },
         "data": {
           "type": "array",
           "items": {
@@ -28158,6 +28186,8 @@
         "next_page_url",
         "prev_page",
         "prev_page_url",
+        "total_count",
+        "total_pages",
         "data"
       ]
     },
@@ -30903,6 +30933,14 @@
           "description": "The previous page of results, or null when this is the first page",
           "x-nullable": true
         },
+        "total_count": {
+          "type": "integer",
+          "description": "The total number of matching results"
+        },
+        "total_pages": {
+          "type": "integer",
+          "description": "The total number of pages of matching results"
+        },
         "data": {
           "type": "array",
           "items": {
@@ -31239,6 +31277,8 @@
         "next_page_url",
         "prev_page",
         "prev_page_url",
+        "total_count",
+        "total_pages",
         "data"
       ]
     },
