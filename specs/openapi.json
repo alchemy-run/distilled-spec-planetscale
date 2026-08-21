@@ -28602,6 +28602,10 @@
           "type": "boolean",
           "description": "Whether to restrict branch creation to one region"
         },
+        "prefer_instant": {
+          "type": "boolean",
+          "description": "Whether deploy requests default to instant deploy when it is available"
+        },
         "insights_raw_queries": {
           "type": "boolean",
           "description": "Whether raw SQL queries are collected"
@@ -28680,6 +28684,7 @@
         "allow_data_branching",
         "foreign_keys_enabled",
         "restrict_branch_region",
+        "prefer_instant",
         "insights_raw_queries",
         "plan",
         "insights_enabled",
@@ -28982,6 +28987,10 @@
                 "type": "boolean",
                 "description": "Whether to restrict branch creation to one region"
               },
+              "prefer_instant": {
+                "type": "boolean",
+                "description": "Whether deploy requests default to instant deploy when it is available"
+              },
               "insights_raw_queries": {
                 "type": "boolean",
                 "description": "Whether raw SQL queries are collected"
@@ -29060,6 +29069,7 @@
               "allow_data_branching",
               "foreign_keys_enabled",
               "restrict_branch_region",
+              "prefer_instant",
               "insights_raw_queries",
               "plan",
               "insights_enabled",
