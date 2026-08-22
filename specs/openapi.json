@@ -228,6 +228,87 @@
         "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_audit_logs`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_audit_logs` |"
       }
     },
+    "/organizations/{organization}/billing/payment-method": {
+      "get": {
+        "tags": [
+          "Billing payment method"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "get_organization_billing_payment_method",
+        "summary": "Get the current billing payment method",
+        "parameters": [
+          {
+            "name": "organization",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Organization name slug from `list_organizations`. Example: `acme`."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the organization's current billing payment method",
+            "schema": {
+              "$ref": "#/definitions/BillingPaymentMethod"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "Returns the current payment method for a confirmed organization admin, or a service token or OAuth token with `read_payment_method`.\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_payment_method`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_payment_method` |"
+      },
+      "delete": {
+        "tags": [
+          "Billing payment method"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "delete_organization_billing_payment_method",
+        "summary": "Delete the current billing payment method",
+        "parameters": [
+          {
+            "name": "organization",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Organization name slug from `list_organizations`. Example: `acme`."
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "The billing payment method was deleted",
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "Removes the current payment method for a confirmed organization admin, or a service token or OAuth token with `write_payment_method`.\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `write_payment_method`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `write_payment_method` |"
+      }
+    },
     "/organizations/{organization}/cluster-size-skus": {
       "get": {
         "tags": [
@@ -7969,6 +8050,24 @@
             "in": "path",
             "required": true,
             "description": "The ID of the role"
+          },
+          {
+            "name": "replica",
+            "type": "boolean",
+            "in": "query",
+            "description": "Return connection details for a replica"
+          },
+          {
+            "name": "read_only_replica",
+            "type": "string",
+            "in": "query",
+            "description": "Return connection details for the read-only replica in this region"
+          },
+          {
+            "name": "bouncer",
+            "type": "string",
+            "in": "query",
+            "description": "Return connection details for this bouncer"
           }
         ],
         "responses": {
@@ -16400,6 +16499,52 @@
         "prev_page",
         "prev_page_url",
         "data"
+      ]
+    },
+    "BillingPaymentMethod": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "PaymentMethod"
+          ],
+          "description": "The resource type"
+        },
+        "id": {
+          "type": "string",
+          "description": "The payment method ID"
+        },
+        "brand": {
+          "type": "string",
+          "description": "The card brand, such as visa or mastercard"
+        },
+        "last4": {
+          "type": "string",
+          "description": "The final four digits of the card number"
+        },
+        "exp_month": {
+          "type": "integer",
+          "description": "The card expiration month"
+        },
+        "exp_year": {
+          "type": "integer",
+          "description": "The card expiration year"
+        },
+        "name": {
+          "type": "string",
+          "description": "The cardholder name",
+          "x-nullable": true
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "brand",
+        "last4",
+        "exp_month",
+        "exp_year",
+        "name"
       ]
     },
     "DatabaseWebhook": {
@@ -27389,6 +27534,14 @@
           "description": "The previous page of results, or null when this is the first page",
           "x-nullable": true
         },
+        "total_count": {
+          "type": "integer",
+          "description": "The total number of matching results"
+        },
+        "total_pages": {
+          "type": "integer",
+          "description": "The total number of pages of matching results"
+        },
         "data": {
           "type": "array",
           "items": {
@@ -27485,6 +27638,8 @@
         "next_page_url",
         "prev_page",
         "prev_page_url",
+        "total_count",
+        "total_pages",
         "data"
       ]
     },
@@ -33588,6 +33743,10 @@
       "description": "            Resources for creating and downloading organization auth attempt exports.\n"
     },
     {
+      "name": "Billing payment method",
+      "description": "            Resources for viewing and removing an organization's current payment method.\n\n            Show requires a confirmed organization admin, or a service token or OAuth token with `read_payment_method`. Delete requires a confirmed organization admin, or a service token or OAuth token with `write_payment_method`.\n"
+    },
+    {
       "name": "Invoices",
       "description": "            Resources for managing invoices.\n"
     },
@@ -33677,6 +33836,7 @@
         "organization:read_invoices": "Read organization invoices",
         "organization:read_members": "Read members in an organization",
         "organization:read_organization": "Read organization",
+        "organization:read_payment_method": "Read organization payment method",
         "organization:restore_backups": "Restore backups to new branches in an organization",
         "organization:restore_production_branch_backups": "Restore production branch backups to new branches in an organization",
         "organization:write_backups": "Create and update backups in an organization",
@@ -33686,6 +33846,7 @@
         "organization:write_deploy_requests": "Create and update deploy requests in an organization",
         "organization:write_members": "Write members in an organization",
         "organization:write_organization": "Write organization",
+        "organization:write_payment_method": "Update and delete the organization payment method",
         "user:read_organizations": "Read a user's organizations",
         "user:read_user": "Read user",
         "user:write_user": "Write user"
