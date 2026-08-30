@@ -8083,7 +8083,69 @@
         "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `write_database`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `write_databases` |\n| Database | `write_database` |"
       }
     },
-    "/organizations/{organization}/databases/{database}/branches/{branch}/read-only-replicas/{id}": {
+    "/organizations/{organization}/databases/{database}/branches/{branch}/read-only-replicas/{read_only_replica}": {
+      "get": {
+        "tags": [
+          "Read-only replicas"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "get_read_only_replica",
+        "summary": "Get a read-only replica",
+        "parameters": [
+          {
+            "name": "organization",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Organization name slug from `list_organizations`. Example: `acme`."
+          },
+          {
+            "name": "database",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Database name slug from `list_databases`. Example: `app-db`."
+          },
+          {
+            "name": "branch",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "Branch name from `list_branches`. Example: `main`."
+          },
+          {
+            "name": "read_only_replica",
+            "type": "string",
+            "in": "path",
+            "required": true,
+            "description": "The name of the read-only replica"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the read-only replica",
+            "schema": {
+              "$ref": "#/definitions/PostgresReadOnlyReplica"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "\n### Authorization\nA service token or OAuth token must have at least one of the following access or scopes in order to use this API endpoint:\n\n**Service Token Accesses**\n `read_branch`, `delete_branch`, `create_branch`, `connect_production_branch`, `connect_branch`\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| Organization | `read_branches` |\n| Database | `read_branches` |\n| Branch | `read_branch` |"
+      },
       "patch": {
         "tags": [
           "Read-only replicas"
@@ -8116,11 +8178,11 @@
             "description": "Branch name from `list_branches`. Example: `main`."
           },
           {
-            "name": "id",
+            "name": "read_only_replica",
             "type": "string",
             "in": "path",
             "required": true,
-            "description": "The ID of the read-only replica"
+            "description": "The name of the read-only replica"
           },
           {
             "name": "body",
@@ -8200,11 +8262,11 @@
             "description": "Branch name from `list_branches`. Example: `main`."
           },
           {
-            "name": "id",
+            "name": "read_only_replica",
             "type": "string",
             "in": "path",
             "required": true,
-            "description": "The ID of the read-only replica"
+            "description": "The name of the read-only replica"
           }
         ],
         "responses": {
